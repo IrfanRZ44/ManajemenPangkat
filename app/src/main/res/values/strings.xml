@@ -1,12 +1,10 @@
 <resources>
-    <string name="app_name">BaseApplication</string>
-    <string name="base_application">Base Application</string>
+    <string name="app_name">Manajemen Pangkat</string>
 
-    <string name="text_all_right_reserved">Ahlan Wa Sahlan</string>
+    <string name="text_all_right_reserved">Aplikasi Manajemen Data Kenaikan Pangkat Pegawai Negeri Sipil UIN Alauddin</string>
     <string name="selamat_datang">Selamat Datang</string>
-    <string name="login">Masuk</string>
+    <string name="login">LOGIN</string>
     <string name="lanjut">Lanjut</string>
-    <string name="sign_up">Daftar</string>
     <string name="no_handphone">No. Handphone</string>
     <string name="password">Password</string>
     <string name="lupa_password">Lupa Password?</string>
@@ -121,4 +119,28 @@
     <string name="menu_setting">Setting</string>
     <string name="main_activity">Main Activity</string>
     <string name="authentication">Authentication</string>
+
+    <string name="digits_number">1234567890</string>
+    <string name="nip">NIP</string>
+    <string name="jabatan">Jabatan</string>
+    <string name="gol">Gol</string>
+    <string name="informasi_kenaikan_pangkat_jabatan">Informasi Kenaikan Pangkat / Jabatan</string>
+    <string name="biodata">Biodata</string>
+    <string name="daftar_usulan">Daftar Usulan</string>
+    <string name="arsip">Arsip</string>
+    <string name="gol_pangkat">Gol. / Pangkat</string>
+    <string name="nip_baru">NIP Baru</string>
+    <string name="nip_lama">NIP Lama</string>
+    <string name="gelar_depan">Gelar Depan</string>
+    <string name="nama2">Nama</string>
+    <string name="pendidikan_tertinggi">Pendidikan Tertinggi</string>
+    <string name="tmt_pangkat">TMT Pangkat</string>
+    <string name="no_sk_pangkat">No. SK Pangkat</string>
+    <string name="tmt_jabatan">TMT Jabatan</string>
+    <string name="tanggal_sk_pangkat">Tanggal SK Pangkat</string>
+    <string name="nomor_sk_jabatan">Nomor SK Jabatan</string>
+    <string name="tanggal_sk_jabatan">Tanggal SK Jabatan</string>
+    <string name="gelar_belakang">Gelar Belakang</string>
+    <string name="main_user">Main User</string>
+    <string name="back">Back</string>
 </resources>

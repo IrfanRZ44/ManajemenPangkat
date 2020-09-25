@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.exomatik.baseapplication">
+    package="com.exomatik.manajemenpangkat">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -15,8 +15,7 @@
         android:theme="@style/CustomTheme"
         android:fullBackupContent="true"
         >
-        <activity android:name=".ui.auth.AuthActivity"
-            android:label="@string/authentication"
+        <activity android:name="com.exomatik.manajemenpangkat.ui.auth.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"
             >
@@ -28,8 +27,26 @@
         </activity>
 
         <activity
-            android:name=".ui.main.MainActivity"
-            android:label="@string/main_activity"
+            android:name="com.exomatik.manajemenpangkat.ui.auth.LoginActivity"
+            android:label="@string/login"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.user.MainUserActivity"
+            android:label="@string/main_user"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.user.BiodataActivity"
+            android:label="@string/biodata"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.utils.LihatFotoActivity"
+            android:label="Lihat Foto"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 

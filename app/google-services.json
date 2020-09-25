@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1077037082584",
+    "firebase_url": "https://manajemenpangkat.firebaseio.com",
+    "project_id": "manajemenpangkat",
+    "storage_bucket": "manajemenpangkat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077037082584:android:4303a052e79353f8e5f4ad",
+        "android_client_info": {
+          "package_name": "com.exomatik.manajemenpangkat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077037082584-5uh732ehggldmmo5hd3o0muhh5g2l0kj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.exomatik.manajemenpangkat",
+            "certificate_hash": "bd7f1a1c80c3679e2fd4d62f8149558e37527daa"
+          }
+        },
+        {
+          "client_id": "1077037082584-9mfd460dbjd7i4hr2khf0hb44sjtq5af.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKZpXKwVMAF3XVYRTIsXm0Q-jFA6RM-JM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077037082584-9mfd460dbjd7i4hr2khf0hb44sjtq5af.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
