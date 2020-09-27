@@ -45,8 +45,38 @@
             android:theme="@style/CustomTheme"/>
 
         <activity
+            android:name="com.exomatik.manajemenpangkat.ui.user.PangkatActivity"
+            android:label="Pangkat"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.user.JabatanActivity"
+            android:label="Pangkat"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
             android:name="com.exomatik.manajemenpangkat.utils.LihatFotoActivity"
             android:label="Lihat Foto"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.user.daftarUsulan.UsulanBiodataActivity"
+            android:label="@string/daftar_usulan"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.user.daftarUsulan.UsulanAdministrasi1Activity"
+            android:label="@string/daftar_usulan"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.user.daftarUsulan.UsulanAdministrasi2Activity"
+            android:label="@string/daftar_usulan"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 

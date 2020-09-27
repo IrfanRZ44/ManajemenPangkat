@@ -33,6 +33,12 @@ class BiodataActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this, MainUserActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     @SuppressLint("SetTextI18n")
     private fun setData(dataUser: ModelUser){
         textNewNip.text = "NIP Baru \t \t \t \t \t \t : ${dataUser.newNip}"

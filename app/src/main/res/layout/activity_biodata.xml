@@ -60,14 +60,6 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <include layout="@layout/progress_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progress"
-            android:visibility="gone"
-            android:layout_centerInParent="true"
-            />
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -294,6 +286,13 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.cardview.widget.CardView>
 
+        <include layout="@layout/progress_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            />
 
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>
