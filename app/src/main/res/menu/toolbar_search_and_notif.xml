@@ -10,7 +10,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/actionNotif"
-        android:icon="@drawable/ic_notif_white"
+        android:icon="@drawable/ic_notif_black"
         android:title="@string/action_notif"
         app:showAsAction="collapseActionView|ifRoom" />
 </menu>

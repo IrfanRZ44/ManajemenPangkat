@@ -22,7 +22,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="keluar">Keluar</string>
     <string name="mohon_tunggu">Mohon Tunggu…</string>
     <string name="lewati">Lewati</string>
     <string name="verifikasi_akun">Verifikasi Akun</string>
@@ -31,7 +30,7 @@
     <string name="action_add">Tambah</string>
     <string name="action_share">Bagikan</string>
 
-    <string name="menu_profile">Profil Saya</string>
+    <string name="menu_profile">Edit Profil</string>
     <string name="menu_kontak">Kontak</string>
     <string name="menu_pesan">Pesan</string>
     <string name="pengaturan">Pengaturan</string>
@@ -183,4 +182,16 @@
     <string name="_8_karya_ilmiah">8. Karya Ilmiah yang di Publikasikan pada Jurnal Ilmiah Nasional sebagai Penulis Utama (Minimal 1)</string>
     <string name="_9_asli_skp_2_dua_tahun_terakhir">9. Asli SKP 2 (Dua) Tahun Terakhir</string>
     <string name="_10_undangan">10. Undangan, Daftar Hadir, dan Berita Acara Pertimbangan Persetujuan Senat</string>
+    <string name="halaman_utama">Halaman Utama</string>
+    <string name="keluar">Keluar</string>
+    <string name="arsip_data_pegawai_dan_sk">Arsip Data Pegawai dan SK</string>
+    <string name="usul_kenaikan_pangkat">Usul Kenaikan Pangkat</string>
+    <string name="tempat_dan_tgl_lahir">Tempat dan Tgl Lahir</string>
+    <string name="pendidikan_terakhir">Pendidikan Terakhir</string>
+    <string name="pangkat_gol">Pangkat/Gol</string>
+    <string name="pangkat_lama">Pangkat Lama</string>
+    <string name="pangkat">Pangkat</string>
+    <string name="golongan">Golongan</string>
+    <string name="tgl_sk_pangkat">Tgl SK Pangkat</string>
+    <string name="pangkat_baru">Pangkat Baru</string>
 </resources>

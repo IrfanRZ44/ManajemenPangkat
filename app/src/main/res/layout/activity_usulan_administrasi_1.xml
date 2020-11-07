@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:theme="@style/CustomStyle"
     android:background="@color/white"
-    tools:context="com.exomatik.manajemenpangkat.ui.user.daftarUsulan.UsulanAdministrasi1Activity">
+    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanAdministrasi1Activity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,9 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp"
             app:popupTheme="@style/CustomStyle.PopupOverlay"
             app:titleTextColor="@color/white">
 

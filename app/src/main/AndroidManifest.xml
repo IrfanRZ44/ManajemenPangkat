@@ -33,25 +33,25 @@
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.user.MainUserActivity"
-            android:label="@string/main_user"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity"
+            android:label="@string/halaman_utama"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.user.BiodataActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.BiodataActivity"
             android:label="@string/biodata"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.user.PangkatActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.PangkatActivity"
             android:label="Pangkat"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.user.JabatanActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.JabatanActivity"
             android:label="Pangkat"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
@@ -63,19 +63,19 @@
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.user.daftarUsulan.UsulanBiodataActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanBiodataActivity"
             android:label="@string/daftar_usulan"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.user.daftarUsulan.UsulanAdministrasi1Activity"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanAdministrasi1Activity"
             android:label="@string/daftar_usulan"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.user.daftarUsulan.UsulanAdministrasi2Activity"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanAdministrasi2Activity"
             android:label="@string/daftar_usulan"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>

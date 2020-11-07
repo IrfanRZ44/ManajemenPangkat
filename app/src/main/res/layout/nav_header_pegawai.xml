@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_160"
+    android:paddingTop="@dimen/h1"
+    android:paddingBottom="@dimen/h1"
+    android:theme="@style/ThemeOverlay.AppCompat.Light"
+    >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imgBackgrond"
+        android:scaleType="centerCrop"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imagePerson"
+        android:layout_width="@dimen/_60"
+        android:layout_height="@dimen/_60"
+        android:layout_marginTop="@dimen/_30"
+        android:layout_marginEnd="@dimen/h2"
+        android:layout_marginStart="@dimen/h5"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerInside"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/text_h3"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/textNama"
+        android:maxLines="1"
+        android:layout_marginTop="@dimen/h1"
+        android:layout_marginStart="@dimen/h5"
+        android:layout_below="@+id/imagePerson"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/text_h2"
+        android:textColor="@color/black"
+        android:id="@+id/textEmail"
+        android:maxLines="1"
+        android:layout_marginStart="@dimen/h5"
+        android:layout_below="@+id/textNama"
+        android:layout_marginBottom="@dimen/h2"
+        />
+</RelativeLayout>

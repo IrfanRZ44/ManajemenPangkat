@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.user.daftarUsulan
+package com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
-import com.exomatik.manajemenpangkat.ui.user.MainUserActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.fragment.HomePegawaiFragment
 import com.exomatik.manajemenpangkat.utils.DataSave
 import kotlinx.android.synthetic.main.activity_usulan_biodata.*
 
@@ -28,7 +28,7 @@ class UsulanBiodataActivity : AppCompatActivity() {
 
     private fun onClick() {
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainUserActivity::class.java)
+            val intent = Intent(this, HomePegawaiFragment::class.java)
             startActivity(intent)
             finish()
         }
@@ -41,7 +41,7 @@ class UsulanBiodataActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, MainUserActivity::class.java)
+        val intent = Intent(this, HomePegawaiFragment::class.java)
         startActivity(intent)
         finish()
     }

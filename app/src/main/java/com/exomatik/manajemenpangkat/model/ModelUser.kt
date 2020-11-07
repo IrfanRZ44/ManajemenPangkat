@@ -5,25 +5,21 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ModelUser(
-    var oldNip: String = "",
-    var newNip: String = "",
-    var token: String = "",
-    var jenisAkun: String = "",
     var password: String = "",
-    var frontGelar: String = "",
-    var nama: String = "",
-    var backGelar: String = "",
-    var jabatan: String = "",
+    var token: String = "",
     var gol: String = "",
-    var tglLahir: String = "",
-    var pendTertinggi: String = "",
-    var nomorSKJabatan: String = "",
-    var nomorSKPangkat: String = "",
-    var tglSKPangkat: String = "",
-    var tglSKJabatan: String = "",
-    var tmtPangkat: String = "",
+    var golOld: String = "",
     var jenisKelamin: String = "",
-    var tmtJabatan: String = "",
+    var nama: String = "",
+    var nip: String = "",
+    var nomorSKPangkat: String = "",
+    var pangkat: String = "",
+    var pangkatOld: String = "",
+    var pendidikanLast: String = "",
+    var tanggalLahir: String = "",
     var tempatLahir: String = "",
-    var tanggalLahir: String = ""
+    var tglSKPangkat: String = "",
+    var tglSKPangkatOld: String = "",
+    var tmtPangkat: String = "",
+    var tmtPangkatOld: String = ""
     ) : Parcelable

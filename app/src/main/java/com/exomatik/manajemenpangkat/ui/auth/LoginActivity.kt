@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
-import com.exomatik.manajemenpangkat.ui.user.MainUserActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
@@ -87,7 +87,7 @@ class LoginActivity : AppCompatActivity(){
                 if (result.exists()) {
                     val data = result.getValue(ModelUser::class.java)
 
-                    if (data?.password == password && data.newNip == nip){
+                    if (data?.password == password && data.nip == nip){
                       getUserToken(data)
                     }
                     else{
@@ -142,7 +142,7 @@ class LoginActivity : AppCompatActivity(){
         }
 
         FirebaseDatabase.getInstance().getReference("Users")
-            .child(dataUser.newNip)
+            .child(dataUser.nip)
             .child("token")
             .setValue(token)
             .addOnCompleteListener(onCompleteListener)
@@ -155,7 +155,7 @@ class LoginActivity : AppCompatActivity(){
         progress.visibility = View.GONE
         textStatus.text = "Berhasil login"
         Toast.makeText(this, "Berhasil login", Toast.LENGTH_LONG).show()
-        val intent = Intent(this, MainUserActivity::class.java)
+        val intent = Intent(this, MainPegawaiActivity::class.java)
         startActivity(intent)
         finish()
     }

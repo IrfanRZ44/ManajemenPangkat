@@ -1,21 +1,21 @@
-package com.exomatik.manajemenpangkat.ui.user.daftarUsulan
+package com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
-import com.exomatik.manajemenpangkat.ui.user.MainUserActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.fragment.HomePegawaiFragment
 import com.exomatik.manajemenpangkat.utils.DataSave
-import kotlinx.android.synthetic.main.activity_usulan_administrasi_1.*
+import kotlinx.android.synthetic.main.activity_usulan_administrasi_2.*
 
-class UsulanAdministrasi1Activity : AppCompatActivity() {
+class UsulanAdministrasi2Activity : AppCompatActivity() {
     private lateinit var savedData : DataSave
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_usulan_administrasi_1)
+        setContentView(R.layout.activity_usulan_administrasi_2)
         myCodeHere()
     }
 
@@ -27,20 +27,15 @@ class UsulanAdministrasi1Activity : AppCompatActivity() {
 
     private fun onClick() {
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainUserActivity::class.java)
+            val intent = Intent(this, HomePegawaiFragment::class.java)
             startActivity(intent)
             finish()
         }
 
-        btnNext.setOnClickListener {
-            val intent = Intent(this, UsulanAdministrasi2Activity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, MainUserActivity::class.java)
+        val intent = Intent(this, HomePegawaiFragment::class.java)
         startActivity(intent)
         finish()
     }

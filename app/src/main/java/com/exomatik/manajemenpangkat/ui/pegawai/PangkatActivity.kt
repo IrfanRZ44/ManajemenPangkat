@@ -1,14 +1,13 @@
-package com.exomatik.manajemenpangkat.ui.user
+package com.exomatik.manajemenpangkat.ui.pegawai
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.utils.DataSave
-import kotlinx.android.synthetic.main.activity_biodata.*
+import kotlinx.android.synthetic.main.activity_pangkat.*
 
 class PangkatActivity : AppCompatActivity() {
     private lateinit var savedData : DataSave
@@ -28,20 +27,28 @@ class PangkatActivity : AppCompatActivity() {
 
     private fun onClick() {
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainUserActivity::class.java)
+            val intent = Intent(this, MainPegawaiActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, MainUserActivity::class.java)
+        val intent = Intent(this, MainPegawaiActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     @SuppressLint("SetTextI18n")
     private fun setData(dataUser: ModelUser){
-        Log.e("Pangkat", dataUser.newNip)
+        etPangkatOld.editText?.setText(dataUser.pangkatOld)
+        etGolOld.editText?.setText(dataUser.golOld)
+        etTglSkPangkatOld.editText?.setText(dataUser.tglSKPangkatOld)
+        etTMTPangkatOld.editText?.setText(dataUser.tmtPangkatOld)
+
+        etPangkat.editText?.setText(dataUser.pangkat)
+        etGol.editText?.setText(dataUser.gol)
+        etTglSkPangkat.editText?.setText(dataUser.tglSKPangkat)
+        etTMTPangkat.editText?.setText(dataUser.tmtPangkat)
     }
 }

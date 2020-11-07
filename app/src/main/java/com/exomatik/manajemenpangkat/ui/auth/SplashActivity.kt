@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
-import com.exomatik.manajemenpangkat.ui.user.MainUserActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 
 class SplashActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {
-                if (savedData.getDataUser()?.newNip.isNullOrEmpty()){
+                if (savedData.getDataUser()?.nip.isNullOrEmpty()){
                     moveToLogin()
                 }
                 else{
@@ -43,7 +43,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun moveToMainUser(){
-        val intent = Intent(this, MainUserActivity::class.java)
+        val intent = Intent(this, MainPegawaiActivity::class.java)
         startActivity(intent)
         finish()
     }

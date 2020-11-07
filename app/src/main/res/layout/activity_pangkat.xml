@@ -1,250 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/CustomStyle"
     android:background="@color/white"
-    tools:context="com.exomatik.manajemenpangkat.ui.user.PangkatActivity">
+    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.PangkatActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp"
-            app:popupTheme="@style/CustomStyle.PopupOverlay"
-            app:titleTextColor="@color/white">
-
+            android:elevation="@dimen/h2"
+            android:background="@color/white"
+            >
             <RelativeLayout
-                android:id="@+id/customeToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="?actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:visibility="visible"
-                >
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgStyle"
-                    android:layout_width="@dimen/_60"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:scaleType="centerInside"
-                    android:src="@color/colorPrimaryDark"
-                    />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/actionBarName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/h2"
-                    android:ellipsize="end"
+                    android:src="@drawable/ic_back_black"
+                    android:background="@drawable/btn_circle_gray"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/h3"
+                    android:id="@+id/btnBack"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/pangkat_gol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:text="@string/gol_pangkat"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/text_h3"
                     android:textStyle="bold"
-                    android:layout_toEndOf="@+id/imgStyle"
-                    android:layout_centerVertical="true"
-                    />
+                    tools:ignore="RelativeOverlap" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
-            android:id="@+id/textPangkatLama"
-            android:text="@string/gol_pangkat_lama"
-            android:textSize="@dimen/text_h3"
-            android:textColor="@color/black"
-            android:layout_below="@+id/toolbar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/h3"
-            android:layout_marginStart="@dimen/_30"
-            android:layout_marginEnd="@dimen/_30"
-            />
-
-        <androidx.cardview.widget.CardView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/colorPrimary"
-            android:layout_marginStart="@dimen/h5"
-            android:layout_marginEnd="@dimen/h5"
-            app:cardElevation="@dimen/h2"
-            app:cardCornerRadius="@dimen/h2"
-            android:layout_below="@+id/textPangkatLama"
-            android:id="@+id/cardOldPangkat"
-            android:layout_marginTop="@dimen/h2"
+            android:padding="@dimen/h5"
+            android:orientation="vertical"
+            android:layout_below="@id/toolbar"
             >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/pangkat_lama"
+                android:textSize="@dimen/text_h2"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/h2"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                />
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/h2"
-                android:orientation="vertical"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
                 >
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textOldPangkat"
-                    android:text="@string/gol_pangkat"
+                    android:text="@string/pangkat"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h5"
-                    android:padding="@dimen/h2"
                     />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPangkatOld"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textOldNama"
-                    android:text="@string/nama_pangkat"
+                    android:text="@string/golongan"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h3"
-                    android:padding="@dimen/h2"
                     />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etGolOld"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textOldTanggal"
-                    android:text="@string/tanggal_sk_pangkat"
+                    android:text="@string/tgl_sk_pangkat"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h3"
-                    android:padding="@dimen/h2"
                     />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etTglSkPangkatOld"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textOldTMT"
                     android:text="@string/tmt_pangkat"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h3"
-                    android:padding="@dimen/h2"
                     />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/h5"
-                    android:background="@android:color/transparent"
-                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etTMTPangkatOld"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
-            android:id="@+id/textPangkatBaru"
-            android:text="@string/gol_pangkat_baru"
-            android:textSize="@dimen/text_h3"
-            android:textColor="@color/black"
-            android:layout_below="@+id/cardOldPangkat"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/h3"
-            android:layout_marginStart="@dimen/_30"
-            android:layout_marginEnd="@dimen/_30"
-            />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/pangkat_baru"
+                android:textSize="@dimen/text_h2"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/h5"
+                android:layout_marginBottom="@dimen/h2"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/colorPrimary"
-            android:layout_marginStart="@dimen/h5"
-            android:layout_marginEnd="@dimen/h5"
-            app:cardElevation="@dimen/h2"
-            app:cardCornerRadius="@dimen/h2"
-            android:layout_below="@+id/textPangkatBaru"
-            android:id="@+id/cardNewPangkat"
-            android:layout_marginTop="@dimen/h2"
-            >
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/h2"
-                android:orientation="vertical"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
                 >
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textNewPangkat"
-                    android:text="@string/gol_pangkat"
+                    android:text="@string/pangkat"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h5"
-                    android:padding="@dimen/h2"
                     />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPangkat"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textNewNama"
-                    android:text="@string/nama_pangkat"
+                    android:text="@string/golongan"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h3"
-                    android:padding="@dimen/h2"
                     />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etGol"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textNewTanggal"
-                    android:text="@string/tanggal_sk_pangkat"
+                    android:text="@string/tgl_sk_pangkat"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h3"
-                    android:padding="@dimen/h2"
                     />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etTglSkPangkat"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_large"
+                android:orientation="horizontal"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textNewTMT"
                     android:text="@string/tmt_pangkat"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/h3"
-                    android:padding="@dimen/h2"
                     />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/h5"
-                    android:background="@android:color/transparent"
-                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etTMTPangkat"
+                    style="@style/customEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:padding="0dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textStandardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:padding="0dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/h5"
+                android:background="@android:color/transparent"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include layout="@layout/progress_loading"
             android:layout_width="wrap_content"
@@ -252,21 +367,6 @@
             android:id="@+id/progress"
             android:visibility="gone"
             android:layout_centerInParent="true"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnBack"
-            style="@style/buttonStandardGreen2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/h2"
-            android:text="@string/back"
-            android:textColor="@color/white"
-            android:layout_marginTop="@dimen/margin_large"
-            android:textAllCaps="false"
-            android:layout_below="@+id/cardNewPangkat"
-            android:layout_centerHorizontal="true"
-
             />
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>
