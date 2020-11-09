@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.PengajuanSelesaiActivity"
+    android:theme="@style/CustomStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/h2"
+        android:background="@color/white"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_black"
+                android:background="@drawable/btn_circle_gray"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/h3"
+                android:id="@+id/btnBack"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:text="@string/selesai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h3"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="@dimen/_150"
+        android:layout_height="@dimen/_150"
+        android:src="@drawable/ic_congrats_green"
+        android:layout_centerInParent="true"
+        android:id="@+id/imgCongrats"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/pengajuan_selesai2"
+        android:textSize="@dimen/text_h5"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/imgCongrats"
+        android:layout_marginTop="@dimen/h5"
+        android:layout_centerHorizontal="true"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBack2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/h5"
+        android:text="@string/kembali"
+        android:textSize="@dimen/text_h2"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_above="@+id/btnStatus"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/h5"
+        android:text="@string/status"
+        android:textSize="@dimen/text_h2"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/h3"
+        />
+
+    <include layout="@layout/progress_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>

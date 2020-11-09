@@ -31,6 +31,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_h3"
+                    android:text="@string/halaman_utama"
                     android:textStyle="bold"
                     tools:ignore="RelativeOverlap" />
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -40,6 +41,7 @@
                     android:src="@drawable/ic_notif_black"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/h5"
+                    android:id="@+id/btnNotif"
                     />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>

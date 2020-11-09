@@ -20,6 +20,7 @@ import com.exomatik.manajemenpangkat.ui.pegawai.fragment.HomePegawaiFragment
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main_pegawai.*
+import kotlinx.android.synthetic.main.activity_main_pegawai.view.*
 import kotlinx.android.synthetic.main.nav_header_pegawai.view.*
 
 class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -74,7 +75,11 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     }
 
     private fun onClick() {
-
+        toolbar.btnNotif.setOnClickListener {
+            val intent = Intent(this, NotifikasiPegawaiActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onBackPressed() {
@@ -89,27 +94,29 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-        // Handle navigation view item clicks here.
-        val id = item.itemId
-
-        if (id == R.id.nav_beranda) {
-            toolbar.title = "Halaman Utama"
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container
-                , HomePegawaiFragment()
-            ).commit()
-        } else if (id == R.id.nav_profile) {
-            toolbar.title = "Edit Profil"
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container
-                , EditProfilFragment()
-            ).commit()
-        } else if (id == R.id.nav_logout) {
-            savedData.setDataObject(ModelUser(), "Users")
-            val intent = Intent(this, SplashActivity::class.java)
-            startActivity(intent)
-            finish()
+        when (item.itemId) {
+            R.id.nav_beranda -> {
+                toolbar.title = "Halaman Utama"
+                supportFragmentManager.beginTransaction().replace(
+                    R.id.fragment_container
+                    ,
+                    HomePegawaiFragment()
+                ).commit()
+            }
+            R.id.nav_profile -> {
+                toolbar.title = "Edit Profil"
+                supportFragmentManager.beginTransaction().replace(
+                    R.id.fragment_container
+                    ,
+                    EditProfilFragment()
+                ).commit()
+            }
+            R.id.nav_logout -> {
+                savedData.setDataObject(ModelUser(), "Users")
+                val intent = Intent(this, SplashActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

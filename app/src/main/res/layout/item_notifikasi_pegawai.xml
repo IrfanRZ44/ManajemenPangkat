@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/CustomTheme">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_75"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/h2"
+        app:cardCornerRadius="@dimen/h2"
+        app:cardElevation="@dimen/h2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/h2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imgMail"
+                android:layout_width="@dimen/margin_large"
+                android:layout_height="@dimen/margin_large"
+                app:cardBackgroundColor="@color/gray0"
+                app:cardCornerRadius="@dimen/h3">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/h2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_mail_gray" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/h2"
+                android:layout_toEndOf="@+id/imgMail"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/pengajuan_berkas"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h3"
+                android:textStyle="bold"
+                android:id="@+id/textName"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/h2"
+                android:layout_toEndOf="@+id/imgMail"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/tanggal"
+                android:textColor="@color/gray3"
+                android:textSize="@dimen/text_h2"
+                android:layout_below="@+id/textName"
+                android:id="@+id/textTanggal"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/h2"
+                android:layout_marginEnd="@dimen/h2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/sedang_diproses"
+                android:textColor="@color/gray3"
+                android:textSize="@dimen/text_h2"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/h2"
+                android:id="@+id/textProgress"
+                tools:ignore="RelativeOverlap"
+                android:drawableEnd="@drawable/ic_time_gray"
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

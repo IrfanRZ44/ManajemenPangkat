@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/CustomStyle"
     android:background="@color/white"
-    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanAdministrasi1Activity">
+    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanPelaksanaActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,52 +17,31 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/CustomStyle.PopupOverlay"
-            app:titleTextColor="@color/white">
-
+            android:elevation="@dimen/h2"
+            android:background="@color/white"
+            >
             <RelativeLayout
-                android:id="@+id/customeToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="?actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:visibility="visible"
-                >
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgStyle"
-                    android:layout_width="@dimen/_60"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:scaleType="centerInside"
-                    android:src="@color/colorPrimaryDark"
-                    />
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnBack"
-                    android:src="@drawable/ic_back_white"
+                    android:src="@drawable/ic_back_black"
                     android:background="@drawable/btn_circle_gray"
-                    android:layout_marginStart="@dimen/h5"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/h3"
+                    android:id="@+id/btnBack"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/actionBarName"
+                    android:text="@string/administrasi_pelaksana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/h2"
-                    android:ellipsize="end"
+                    android:layout_centerHorizontal="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:text="@string/daftar_usulan"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/text_h3"
                     android:textStyle="bold"
-                    android:layout_toEndOf="@+id/imgStyle"
-                    android:layout_centerVertical="true"
-                    />
+                    tools:ignore="RelativeOverlap" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -74,17 +52,6 @@
             android:orientation="vertical"
             android:layout_below="@+id/toolbar"
             >
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:id="@+id/textBiodata"
-                android:text="@string/persyaratan_administrasi"
-                android:textSize="@dimen/text_h2"
-                android:textColor="@color/black"
-                android:layout_marginTop="@dimen/h2"
-                android:layout_gravity="center_horizontal"
-                />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -100,31 +67,57 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textFCKarpeg"
-                    android:text="@string/fotocopy_karpeg"
+                    android:text="@string/_1_karpeg"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnFCKarpeg"
-                    style="@style/buttonStandardGreen2"
+                    android:id="@+id/btnKarpeg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
 
-                <androidx.appcompat.widget.AppCompatImageView
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/h4"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_true_green"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgFCKarpeg"
+                    android:layout_weight="0.7"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/_2_sk_cpns"
+                    android:textSize="@dimen/text_h2"
+                    android:textColor="@color/black"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSKCPNS"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:padding="@dimen/h2"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAllCaps="false"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -141,72 +134,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textFCCPNS"
-                    android:text="@string/fotocopy_sk_cpns"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnFCCPNS"
-                    style="@style/buttonStandardGreen2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgFCCPNS"
-                    />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/h4"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical"
-                >
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textSKPNS"
-                    android:text="@string/fotocopy_sk_pns"
+                    android:text="@string/_3_sk_pns"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSKPNS"
-                    style="@style/buttonStandardGreen2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgSKPNS"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -223,31 +167,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textSKTerakhir"
-                    android:text="@string/fotocopy_sk_terakhir"
+                    android:text="@string/_4_sk_pangkat_terakhir"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSKTerakhir"
-                    style="@style/buttonStandardGreen2"
+                    android:id="@+id/btnSKPangkatTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgSKTerakhir"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -264,31 +200,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textSKFungsionalTertentu"
-                    android:text="@string/sk_jabatan_fungsional_pelaksana_tertentu"
+                    android:text="@string/_5_sk_jabatan_pelaksana_sk_jabatan_terakhir"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSKFungsionalTertentu"
-                    style="@style/buttonStandardGreen2"
+                    android:id="@+id/btnSKJabatanTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgSKFungsionalTertentu"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -306,31 +234,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textSKFungsionalTerakhir"
-                    android:text="@string/fotocopy_sk_jabatan_fungsional_terakhir"
+                    android:text="@string/_6_pak_terakhir"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSKFungsionalTerakhir"
-                    style="@style/buttonStandardGreen2"
+                    android:id="@+id/btnPAKTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgSKFungsionalTerakhir"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -347,31 +267,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textFCAngka"
-                    android:text="@string/fotocopy_penetapan_angka_kredit_terakhir"
+                    android:text="@string/_7_sk_fungsional_terakhir"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnFCAngka"
-                    style="@style/buttonStandardGreen2"
+                    android:id="@+id/btnFungsionalTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgFCAngka"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -388,31 +300,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textSKP"
-                    android:text="@string/skp_2018_dan_2019_asli"
+                    android:text="@string/_8_skp_2_tahun_terakhir"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSKP"
-                    style="@style/buttonStandardGreen2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgSKP"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -429,31 +333,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textFCIjazah"
-                    android:text="@string/fotocopy_ijazah_terakhir"
+                    android:text="@string/_9_ijazah_terakhir"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnFCIjazah"
-                    style="@style/buttonStandardGreen2"
+                    android:id="@+id/btnIjazah"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_false_red"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgFCIjazah"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -470,89 +366,41 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textTranskip"
-                    android:text="@string/transkrip_nilai_dilegalisir_di_tempat_studi"
+                    android:text="@string/_10_transkrip_nilai_dilegalisir"
                     android:textSize="@dimen/text_h2"
                     android:textColor="@color/black"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnTranskip"
-                    style="@style/buttonStandardGreen2"
+                    android:id="@+id/btnTranskrip"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_true_green"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgTranskip"
-                    />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/h4"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical"
-                >
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:fontFamily="@font/roboto_regular"
-                    android:id="@+id/textBerkas"
-                    android:text="@string/berkas"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnBerkas"
-                    style="@style/buttonStandardGreen2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:padding="@dimen/h2"
-                    android:text="@string/upload"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_true_green"
-                    android:layout_weight="0.1"
-                    android:layout_marginStart="@dimen/h2"
-                    android:id="@+id/imgBerkas"
+                    android:drawableStart="@drawable/ic_add_green"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="@dimen/h5"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnNext"
-                style="@style/buttonStandardGreen2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/h2"
-                android:text="@string/next"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:layout_marginStart="@dimen/h2"
-                android:layout_gravity="end"
+                android:text="@string/kirim_berkas"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_h2"
+                android:fontFamily="@font/roboto_regular"
+                android:drawableEnd="@drawable/ic_true_green"
+                android:drawablePadding="@dimen/h2"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/h5"
+                android:padding="@dimen/h2"
+                android:backgroundTint="@color/white"
+                android:id="@+id/btnSend"
                 />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/h5"

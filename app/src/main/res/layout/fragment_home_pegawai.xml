@@ -149,7 +149,7 @@
                 android:orientation="vertical"
                 android:layout_marginEnd="@dimen/h5"
                 android:layout_marginTop="6dp"
-                android:id="@+id/btnJabatan"
+                android:id="@+id/btnStatus"
                 >
                 <androidx.appcompat.widget.AppCompatImageView
                     style="@style/buttonStandardGreen"
@@ -235,5 +235,13 @@
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <include layout="@layout/progress_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            />
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>
