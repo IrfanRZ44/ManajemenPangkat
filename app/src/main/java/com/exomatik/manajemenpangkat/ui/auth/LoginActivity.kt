@@ -155,7 +155,7 @@ class LoginActivity : AppCompatActivity(){
         progress.visibility = View.GONE
         textStatus.text = "Berhasil login"
         Toast.makeText(this, "Berhasil login", Toast.LENGTH_LONG).show()
-        val intent = Intent(this, MainPegawaiActivity::class.java)
+        val intent = Intent(this, SplashActivity::class.java)
         startActivity(intent)
         finish()
     }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
+import com.exomatik.manajemenpangkat.ui.adminFakultas.MainFakultasActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 
@@ -43,9 +44,21 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun moveToMainUser(){
-        val intent = Intent(this, MainPegawaiActivity::class.java)
-        startActivity(intent)
-        finish()
+        val jenisUser = savedData.getDataUser()?.jenisUser
+        if (!jenisUser.isNullOrEmpty()){
+            val intent = if (jenisUser == "Pegawai"){
+                Intent(this, MainPegawaiActivity::class.java)
+            }
+            else{
+                Intent(this, MainFakultasActivity::class.java)
+            }
+
+            startActivity(intent)
+            finish()
+        }
+        else{
+            moveToLogin()
+        }
     }
 
     override fun onDestroy() {

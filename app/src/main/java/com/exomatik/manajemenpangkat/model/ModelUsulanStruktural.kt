@@ -28,5 +28,11 @@ data class ModelUsulanStruktural(
     var tglBagianKepegawaian: String = "",
     var tglBKN: String = "",
     var pangkatAwal: String = "",
-    var pangkatUsulan: String = ""
+    var pangkatUsulan: String = "",
+    var disposisiAdminFakultas: String = "",
+    var disposisiRektor: String = "",
+    var disposisiBagianUmum: String = "",
+    var disposisiBagianKepegawaian: String = "",
+    var disposisiBKN: String = "",
+    var nip: String = ""
     ) : Parcelable

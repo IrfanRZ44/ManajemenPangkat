@@ -10,15 +10,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
+import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
 import com.exomatik.manajemenpangkat.ui.pegawai.BiodataActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.PangkatActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.StatusPengajuanActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulKPActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanPelaksanaActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanStrukturalActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_usul_kp.*
 import kotlinx.android.synthetic.main.fragment_home_pegawai.view.*
 
 class HomePegawaiFragment : Fragment() {
@@ -85,7 +89,23 @@ class HomePegawaiFragment : Fragment() {
                 v.progress.visibility = View.GONE
 
                 if (result.exists()) {
-                    Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
+                    val data = result.getValue(ModelUsulanPelaksana::class.java)
+
+                    if (data != null && data.statusPengajuan){
+                        Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty()){
+                            val intent = Intent(activity, UsulanPelaksanaActivity::class.java)
+                            intent.putExtra("awal", data.pangkatAwal)
+                            intent.putExtra("usul", data.pangkatUsulan)
+                            activity?.startActivity(intent)
+                            activity?.finish()
+                        }
+                        else{
+                            checkUsulanStruktural(dataUser)
+                        }
+                    }
                 }
                 else{
                     checkUsulanStruktural(dataUser)
@@ -115,7 +135,25 @@ class HomePegawaiFragment : Fragment() {
                 v.progress.visibility = View.GONE
 
                 if (result.exists()) {
-                    Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
+                    val data = result.getValue(ModelUsulanPelaksana::class.java)
+
+                    if (data != null && data.statusPengajuan){
+                        Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty()){
+                            val intent = Intent(activity, UsulanStrukturalActivity::class.java)
+                            intent.putExtra("awal", data.pangkatAwal)
+                            intent.putExtra("usul", data.pangkatUsulan)
+                            activity?.startActivity(intent)
+                            activity?.finish()
+                        }
+                        else{
+                            val intent = Intent(activity, UsulKPActivity::class.java)
+                            activity?.startActivity(intent)
+                            activity?.finish()
+                        }
+                    }
                 }
                 else{
                     val intent = Intent(activity, UsulKPActivity::class.java)

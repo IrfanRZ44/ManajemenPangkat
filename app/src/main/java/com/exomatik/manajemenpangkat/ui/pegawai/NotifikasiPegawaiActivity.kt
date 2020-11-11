@@ -21,8 +21,8 @@ import kotlinx.android.synthetic.main.activity_notifikasi_pegawai.progress
 
 class NotifikasiPegawaiActivity : AppCompatActivity() {
     private lateinit var savedData : DataSave
-    var listProgress = ArrayList<ModelNotifikasiPegawai>()
-    var adapter: AdapterNotifikasiPegawai? = null
+    private var listProgress = ArrayList<ModelNotifikasiPegawai>()
+    private var adapter: AdapterNotifikasiPegawai? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

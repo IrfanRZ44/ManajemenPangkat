@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class ModelUser(
     var password: String = "",
     var token: String = "",
+    var jenisUser: String = "",
     var gol: String = "",
     var golOld: String = "",
     var jenisKelamin: String = "",

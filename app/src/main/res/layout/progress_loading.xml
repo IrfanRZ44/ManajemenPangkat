@@ -2,7 +2,7 @@
 <com.exomatik.manajemenpangkat.services.loadingIndicatorView.LoadingIndicatorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:indicatorColor="@color/colorPrimary"
+    app:indicatorColor="@color/colorPrimaryDark"
     app:indicatorName="LineScaleIndicator"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

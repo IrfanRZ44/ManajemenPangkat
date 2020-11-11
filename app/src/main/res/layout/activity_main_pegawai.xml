@@ -2,49 +2,48 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity">
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            apps:navigationIcon="@drawable/ic_menu_black"
-            android:elevation="@dimen/h2"
             android:background="@color/white"
-            >
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_h3"
-                    android:text="@string/halaman_utama"
-                    android:textStyle="bold"
-                    tools:ignore="RelativeOverlap" />
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_circle_gray"
-                    android:src="@drawable/ic_notif_black"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/h5"
-                    android:id="@+id/btnNotif"
-                    />
-            </RelativeLayout>
+            android:elevation="@dimen/h2"
+            apps:navigationIcon="@drawable/ic_menu_black"
+            apps:title="">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/halaman_utama"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h3"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnNotif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/h5"
+                android:background="@drawable/btn_circle_gray"
+                android:src="@drawable/ic_notif_black" />
         </androidx.appcompat.widget.Toolbar>
+
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
@@ -55,10 +54,10 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="start"
         android:background="@color/white"
         apps:headerLayout="@layout/nav_header_pegawai"
         apps:itemIconTint="@color/gray1"
         apps:itemTextColor="@color/black"
-        apps:menu="@menu/main_drawer"
-        android:layout_gravity="start"/>
+        apps:menu="@menu/main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

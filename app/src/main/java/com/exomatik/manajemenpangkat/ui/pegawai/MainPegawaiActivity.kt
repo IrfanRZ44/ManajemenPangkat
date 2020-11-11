@@ -40,7 +40,7 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     }
 
     private fun setNavigation(){
-        toolbar.title = "Halaman Utama"
+        toolbar.title = ""
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
@@ -96,7 +96,6 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_beranda -> {
-                toolbar.title = "Halaman Utama"
                 supportFragmentManager.beginTransaction().replace(
                     R.id.fragment_container
                     ,
@@ -104,7 +103,6 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 ).commit()
             }
             R.id.nav_profile -> {
-                toolbar.title = "Edit Profil"
                 supportFragmentManager.beginTransaction().replace(
                     R.id.fragment_container
                     ,

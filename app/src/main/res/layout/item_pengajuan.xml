@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_75"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/h2"
         app:cardCornerRadius="@dimen/h2"
@@ -25,10 +25,12 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/imgMail"
-                android:layout_width="@dimen/margin_large"
-                android:layout_height="@dimen/margin_large"
+                android:layout_width="@dimen/_75"
+                android:layout_height="@dimen/_75"
                 app:cardBackgroundColor="@color/gray0"
-                app:cardCornerRadius="@dimen/h3">
+                app:cardCornerRadius="@dimen/h3"
+                android:layout_centerVertical="true"
+                >
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
@@ -55,31 +57,57 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/h2"
+                android:layout_marginTop="@dimen/h2"
                 android:layout_toEndOf="@+id/imgMail"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@string/tanggal"
-                android:textColor="@color/gray3"
+                android:text="@string/awal"
+                android:textColor="@color/red1"
                 android:textSize="@dimen/text_h2"
                 android:layout_below="@+id/textName"
-                android:id="@+id/textTanggal"
+                android:id="@+id/textAwal"
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/h2"
-                android:layout_marginEnd="@dimen/h2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/menjadi"
+                android:textColor="@color/gray3"
+                android:textSize="@dimen/text_h2"
+                android:layout_below="@+id/textAwal"
+                android:id="@+id/textMenjadi"
+                android:layout_centerHorizontal="true"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/h2"
+                android:layout_toEndOf="@+id/imgMail"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/usulan"
+                android:textColor="@color/green1"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_h2"
+                android:layout_below="@+id/textMenjadi"
+                android:id="@+id/textUsulan"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/h2"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/sedang_diproses"
                 android:textColor="@color/gray3"
                 android:textSize="@dimen/text_h2"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="false"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/textUsulan"
                 android:layout_marginBottom="@dimen/h2"
-                android:id="@+id/textProgress"
+                android:id="@+id/textTanggal"
                 tools:ignore="RelativeOverlap"
-                android:drawableEnd="@drawable/ic_time_gray"
                 />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

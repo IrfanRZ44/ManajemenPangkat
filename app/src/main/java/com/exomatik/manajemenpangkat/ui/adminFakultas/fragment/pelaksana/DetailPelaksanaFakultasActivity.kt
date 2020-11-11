@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan
+package com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -15,8 +14,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
-import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
-import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
+import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
+import com.exomatik.manajemenpangkat.ui.adminFakultas.DetailPDFActivity
+import com.exomatik.manajemenpangkat.ui.adminFakultas.MainFakultasActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -24,140 +24,96 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import kotlinx.android.synthetic.main.activity_usulan_struktural.*
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnBack
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnIjazah
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKCPNS
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKJabatanTerakhir
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKP
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKPNS
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnTranskrip
-import kotlinx.android.synthetic.main.activity_usulan_struktural.progress
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
+import kotlinx.android.synthetic.main.activity_usulan_pelaksana.*
 
-class UsulanStrukturalActivity : AppCompatActivity() {
+class DetailPelaksanaFakultasActivity : AppCompatActivity() {
     private lateinit var savedData : DataSave
     private val getPDFCode = 86
     private var mStorageReference: StorageReference? = null
     private var mDatabaseReference: DatabaseReference? = null
     private lateinit var requestFile: String
+    private var dataPengajuan: ModelUsulanPelaksana? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_usulan_struktural)
+        setContentView(R.layout.activity_detail_pelaksana_fakultas)
         myCodeHere()
     }
 
     private fun myCodeHere(){
         savedData = DataSave(this)
+        dataPengajuan = intent.getParcelableExtra("dataPengajuan")
+
         savedData.getDataUser()?.let { setData(it) }
-        mStorageReference = FirebaseStorage.getInstance().getReference("UsulanStruktural")
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("UsulanStruktural")
+        mStorageReference = FirebaseStorage.getInstance().getReference("UsulanPelaksana")
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("UsulanPelaksana")
         onClick()
     }
 
     @SuppressLint("SimpleDateFormat")
     private fun onClick() {
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainPegawaiActivity::class.java)
+            val intent = Intent(this, MainFakultasActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        btnSend.setOnClickListener {
-            if (btnKarpeg.text == "Change" && btnSKCPNS.text == "Change" && btnSKPNS.text == "Change" &&
-                btnSKPangkatTerakhir.text == "Change" && btnSKJabatanTerakhir.text == "Change" &&
-                btnSuratPelantikan.text == "Change" && btnSuratTugas.text == "Change" &&
-                btnSKP.text == "Change" && btnIjazah.text == "Change" && btnTranskrip.text == "Change"
-            ){
-                val dataUser = savedData.getDataUser()
-                if (dataUser != null){
-                    val tglPengajuan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-M-yyyy"))
-                    } else {
-                        SimpleDateFormat("dd-M-yyyy").format(Date())
-                    }
-
-                    val awal = intent.getStringExtra("awal")
-                    val usul = intent.getStringExtra("usul")
-
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusPengajuan")?.setValue(true)
-                    mDatabaseReference?.child(dataUser.nip)?.child("tglPengajuan")?.setValue(tglPengajuan)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusAdminFakultas")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusRektor")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusBagianUmum")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusBagianKepegawaian")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusBKN")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("pangkatAwal")?.setValue(awal)
-                    mDatabaseReference?.child(dataUser.nip)?.child("pangkatUsulan")?.setValue(usul)
-                    mDatabaseReference?.child(dataUser.nip)?.child("nip")?.setValue(dataUser.nip)
-                    val intent = Intent(this, PengajuanSelesaiActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
-            else{
-                Toast.makeText(this, "Mohon lengkapi berkas Anda", Toast.LENGTH_LONG).show()
-            }
-        }
-
         btnKarpeg.setOnClickListener {
-            requestFile = "Karpeg"
-            getPDF()
+            val intent = Intent(this, DetailPDFActivity::class.java)
+            intent.putExtra("urlFile", dataPengajuan?.Karpeg)
+            startActivity(intent)
+            finish()
         }
-
-        btnSKCPNS.setOnClickListener {
-            requestFile = "SKCpns"
-            getPDF()
-        }
-
-        btnSKPNS.setOnClickListener {
-            requestFile = "SKPns"
-            getPDF()
-        }
-
-        btnSKPangkatTerakhir.setOnClickListener {
-            requestFile = "SKPangkatTerakhir"
-            getPDF()
-        }
-
-        btnSKJabatanTerakhir.setOnClickListener {
-            requestFile = "SKJabatanTerakhir"
-            getPDF()
-        }
-
-        btnSuratPelantikan.setOnClickListener {
-            requestFile = "SuratPelantikan"
-            getPDF()
-        }
-
-        btnSuratTugas.setOnClickListener {
-            requestFile = "SuratTugas"
-            getPDF()
-        }
-
-        btnSKP.setOnClickListener {
-            requestFile = "SKP"
-            getPDF()
-        }
-
-        btnIjazah.setOnClickListener {
-            requestFile = "Ijazah"
-            getPDF()
-        }
-
-        btnTranskrip.setOnClickListener {
-            requestFile = "Transkrip"
-            getPDF()
-        }
+//
+//        btnSKCPNS.setOnClickListener {
+//            requestFile = "SKCpns"
+//            getPDF()
+//        }
+//
+//        btnSKPNS.setOnClickListener {
+//            requestFile = "SKPns"
+//            getPDF()
+//        }
+//
+//        btnSKPangkatTerakhir.setOnClickListener {
+//            requestFile = "SKPangkatTerakhir"
+//            getPDF()
+//        }
+//
+//        btnSKJabatanTerakhir.setOnClickListener {
+//            requestFile = "SKJabatanTerakhir"
+//            getPDF()
+//        }
+//
+//        btnPAKTerakhir.setOnClickListener {
+//            requestFile = "PAKTerakhir"
+//            getPDF()
+//        }
+//
+//        btnFungsionalTerakhir.setOnClickListener {
+//            requestFile = "FungsionalTerakhir"
+//            getPDF()
+//        }
+//
+//        btnSKP.setOnClickListener {
+//            requestFile = "SKP"
+//            getPDF()
+//        }
+//
+//        btnIjazah.setOnClickListener {
+//            requestFile = "Ijazah"
+//            getPDF()
+//        }
+//
+//        btnTranskrip.setOnClickListener {
+//            requestFile = "Transkrip"
+//            getPDF()
+//        }
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, MainPegawaiActivity::class.java)
+        val intent = Intent(this, MainFakultasActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -174,7 +130,7 @@ class UsulanStrukturalActivity : AppCompatActivity() {
                 progress.visibility = View.GONE
 
                 if (result.exists()) {
-                    val data = result.getValue(ModelUsulanStruktural::class.java)
+                    val data = result.getValue(ModelUsulanPelaksana::class.java)
                     if (data != null){
                         if (data.Karpeg.isNotEmpty()){
                             requestFile = "Karpeg"
@@ -196,12 +152,12 @@ class UsulanStrukturalActivity : AppCompatActivity() {
                             requestFile = "SKJabatanTerakhir"
                             changeButtonStyle()
                         }
-                        if (data.SuratPelantikan.isNotEmpty()){
-                            requestFile = "SuratPelantikan"
+                        if (data.PAKTerakhir.isNotEmpty()){
+                            requestFile = "PAKTerakhir"
                             changeButtonStyle()
                         }
-                        if (data.SuratTugas.isNotEmpty()){
-                            requestFile = "SuratTugas"
+                        if (data.FungsionalTerakhir.isNotEmpty()){
+                            requestFile = "FungsionalTerakhir"
                             changeButtonStyle()
                         }
                         if (data.SKP.isNotEmpty()){
@@ -222,7 +178,7 @@ class UsulanStrukturalActivity : AppCompatActivity() {
         }
 
         FirebaseDatabase.getInstance()
-            .getReference("UsulanStruktural")
+            .getReference("UsulanPelaksana")
             .child(dataUser.nip)
             .addListenerForSingleValueEvent(valueEventListener)
     }
@@ -235,7 +191,7 @@ class UsulanStrukturalActivity : AppCompatActivity() {
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(intent, getPDFCode)
         } else { ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 9)
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 9)
         }
     }
 
@@ -318,17 +274,17 @@ class UsulanStrukturalActivity : AppCompatActivity() {
                 val img = resources.getDrawable(R.drawable.ic_change_orange)
                 btnSKJabatanTerakhir.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
             }
-            "SuratPelantikan" -> {
-                btnSuratPelantikan.text = "Change"
-                btnSuratPelantikan.setTextColor(resources.getColor(R.color.orange1))
+            "PAKTerakhir" -> {
+                btnPAKTerakhir.text = "Change"
+                btnPAKTerakhir.setTextColor(resources.getColor(R.color.orange1))
                 val img = resources.getDrawable(R.drawable.ic_change_orange)
-                btnSuratPelantikan.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+                btnPAKTerakhir.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
             }
-            "SuratTugas" -> {
-                btnSuratTugas.text = "Change"
-                btnSuratTugas.setTextColor(resources.getColor(R.color.orange1))
+            "FungsionalTerakhir" -> {
+                btnFungsionalTerakhir.text = "Change"
+                btnFungsionalTerakhir.setTextColor(resources.getColor(R.color.orange1))
                 val img = resources.getDrawable(R.drawable.ic_change_orange)
-                btnSuratTugas.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+                btnFungsionalTerakhir.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
             }
             "SKP" -> {
                 btnSKP.text = "Change"
