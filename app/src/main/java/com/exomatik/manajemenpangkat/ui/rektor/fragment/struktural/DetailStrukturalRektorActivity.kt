@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana
+package com.exomatik.manajemenpangkat.ui.rektor.fragment.struktural
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
-import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
+import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
 import com.exomatik.manajemenpangkat.ui.rektor.MainRektorActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
@@ -32,25 +32,25 @@ import com.google.firebase.storage.UploadTask
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
-import kotlinx.android.synthetic.main.activity_detail_pelaksana_rektor.*
+import kotlinx.android.synthetic.main.activity_detail_struktural_rektor.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class DetailPelaksanaRektorActivity : AppCompatActivity(),
+class DetailStrukturalRektorActivity : AppCompatActivity(),
     RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?>{
     private lateinit var savedData : DataSave
     private val getPDFCode = 86
     private var mStorageReference: StorageReference? = null
     private var mDatabaseReference: DatabaseReference? = null
-    private var dataPengajuan: ModelUsulanPelaksana? = null
+    private var dataPengajuan: ModelUsulanStruktural? = null
     private var rfabHelper: RapidFloatingActionHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_detail_pelaksana_rektor)
+        setContentView(R.layout.activity_detail_struktural_rektor)
         myCodeHere()
     }
 
@@ -58,8 +58,8 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
         savedData = DataSave(this)
         dataPengajuan = intent.getParcelableExtra("dataPengajuan")
 
-        mStorageReference = FirebaseStorage.getInstance().getReference("UsulanPelaksana")
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("UsulanPelaksana")
+        mStorageReference = FirebaseStorage.getInstance().getReference("UsulanStruktural")
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("UsulanStruktural")
         setFAB()
         onClick()
     }
@@ -96,12 +96,12 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
             dataPengajuan?.SKJabatanTerakhir?.let { it1 -> openPdf(it1) }
         }
 
-        btnPAKTerakhir.setOnClickListener {
-            dataPengajuan?.PAKTerakhir?.let { it1 -> openPdf(it1) }
+        btnSuratPelantikan.setOnClickListener {
+            dataPengajuan?.SuratPelantikan?.let { it1 -> openPdf(it1) }
         }
 
-        btnFungsionalTerakhir.setOnClickListener {
-            dataPengajuan?.FungsionalTerakhir?.let { it1 -> openPdf(it1) }
+        btnSuratTugas.setOnClickListener {
+            dataPengajuan?.SuratTugas?.let { it1 -> openPdf(it1) }
         }
 
         btnSKP.setOnClickListener {
@@ -232,7 +232,7 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
             ?.child("catatanDitolak")?.setValue(note)
 
         FirebaseDatabase.getInstance().getReference("DataRektor")
-            .child("UsulanPelaksana")
+            .child("UsulanStruktural")
             .child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
             .setValue(dataPengajuan)
 
@@ -259,7 +259,7 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
         dataPengajuan?.disposisiRektor = urlFile
         dataPengajuan?.tglRektor = tglRektor
         FirebaseDatabase.getInstance().getReference("DataRektor")
-            .child("UsulanPelaksana")
+            .child("UsulanStruktural")
             .child("${dataPengajuan?.nip}__${tglRektor}")
             .setValue(dataPengajuan)
 

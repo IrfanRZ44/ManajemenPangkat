@@ -2,7 +2,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana.DetailPelaksanaRektorActivity"
+    tools:context="com.exomatik.manajemenpangkat.ui.rektor.fragment.struktural.DetailStrukturalRektorActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,7 +28,7 @@
                 android:id="@+id/btnBack"
                 />
             <androidx.appcompat.widget.AppCompatTextView
-                android:text="@string/administrasi_pelaksana"
+                android:text="@string/administrasi_struktural"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@string/_5_sk_jabatan_pelaksana_sk_jabatan_terakhir"
+                android:text="@string/_5_sk_jabatan_terakhir"
                 android:textSize="@dimen/text_h2"
                 android:textColor="@color/black"
                 />
@@ -229,13 +229,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@string/_6_pak_terakhir"
+                android:text="@string/_6_surat_pelantikan"
                 android:textSize="@dimen/text_h2"
                 android:textColor="@color/black"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPAKTerakhir"
+                android:id="@+id/btnSuratPelantikan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -262,13 +262,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@string/_7_sk_fungsional_terakhir"
+                android:text="@string/_7_surat_melaksanakan_tugas"
                 android:textSize="@dimen/text_h2"
                 android:textColor="@color/black"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFungsionalTerakhir"
+                android:id="@+id/btnSuratTugas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"

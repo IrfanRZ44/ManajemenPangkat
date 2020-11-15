@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.rektor
+package com.exomatik.manajemenpangkat.ui.bkn
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.ui.auth.SplashActivity
-import com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana.UsulPelaksanaRektorFragment
-import com.exomatik.manajemenpangkat.ui.rektor.fragment.struktural.UsulStrukturalRektorFragment
+import com.exomatik.manajemenpangkat.ui.bkn.fragment.pelaksana.UsulPelaksanaBKNFragment
+import com.exomatik.manajemenpangkat.ui.bkn.fragment.struktural.UsulStrukturalBKNFragment
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.SectionsPagerAdapter
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
@@ -17,7 +17,7 @@ import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import kotlinx.android.synthetic.main.activity_main_rektor.*
 
-class MainRektorActivity : AppCompatActivity(),
+class MainBKNActivity : AppCompatActivity(),
     RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?> {
     private lateinit var savedData : DataSave
     private var exit = false
@@ -26,7 +26,7 @@ class MainRektorActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main_rektor)
+        setContentView(R.layout.activity_main_bkn)
 
         savedData = DataSave(this)
 
@@ -36,8 +36,8 @@ class MainRektorActivity : AppCompatActivity(),
 
     private fun myCodeHere(){
         val adapter = SectionsPagerAdapter(supportFragmentManager)
-        adapter.addFragment(UsulPelaksanaRektorFragment(), "Usulan Pelaksana")
-        adapter.addFragment(UsulStrukturalRektorFragment(), "Usulan Struktural")
+        adapter.addFragment(UsulPelaksanaBKNFragment(), "Usulan Pelaksana")
+        adapter.addFragment(UsulStrukturalBKNFragment(), "Usulan Struktural")
         view_pagerr.adapter = adapter
         tabs.setupWithViewPager(view_pagerr)
     }
@@ -93,7 +93,7 @@ class MainRektorActivity : AppCompatActivity(),
 
     override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<Any?>?) {
         if (position == 0){
-            val intent = Intent(this, RiwayatRektorActivity::class.java)
+            val intent = Intent(this, RiwayatBKNActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -108,7 +108,7 @@ class MainRektorActivity : AppCompatActivity(),
 
     override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<Any?>?) {
         if (position == 0){
-            val intent = Intent(this, RiwayatRektorActivity::class.java)
+            val intent = Intent(this, RiwayatBKNActivity::class.java)
             startActivity(intent)
             finish()
         }

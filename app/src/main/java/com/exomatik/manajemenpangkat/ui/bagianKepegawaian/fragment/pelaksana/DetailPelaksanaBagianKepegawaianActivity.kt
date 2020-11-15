@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana
+package com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.pelaksana
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -19,7 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
-import com.exomatik.manajemenpangkat.ui.rektor.MainRektorActivity
+import com.exomatik.manajemenpangkat.ui.bkn.MainBKNActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
 import com.google.android.gms.tasks.OnFailureListener
@@ -32,13 +32,13 @@ import com.google.firebase.storage.UploadTask
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
-import kotlinx.android.synthetic.main.activity_detail_pelaksana_rektor.*
+import kotlinx.android.synthetic.main.activity_detail_pelaksana_bagian_umum.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class DetailPelaksanaRektorActivity : AppCompatActivity(),
+class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
     RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?>{
     private lateinit var savedData : DataSave
     private val getPDFCode = 86
@@ -50,7 +50,7 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_detail_pelaksana_rektor)
+        setContentView(R.layout.activity_detail_pelaksana_bagian_umum)
         myCodeHere()
     }
 
@@ -67,13 +67,13 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
     @SuppressLint("SimpleDateFormat")
     private fun onClick() {
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainRektorActivity::class.java)
+            val intent = Intent(this, MainBKNActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         btnOpenNota.setOnClickListener {
-            dataPengajuan?.disposisiRektor?.let { it1 -> openPdf(it1) }
+            dataPengajuan?.disposisiBKN?.let { it1 -> openPdf(it1) }
         }
 
         btnKarpeg.setOnClickListener {
@@ -118,7 +118,7 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, MainRektorActivity::class.java)
+        val intent = Intent(this, MainBKNActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -155,7 +155,7 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
 
     private fun uploadFile(data: Uri) {
         progress.visibility = View.VISIBLE
-        val sRef = mStorageReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}/disposisiRektor" + ".pdf")
+        val sRef = mStorageReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}/disposisiBKN" + ".pdf")
         sRef?.putFile(data)
             ?.addOnSuccessListener { taskSnapshot ->
                 dataPengajuan?.let { getUrlFile(taskSnapshot, it.nip, it.tglPengajuan) }
@@ -231,21 +231,21 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
         mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
             ?.child("catatanDitolak")?.setValue(note)
 
-        FirebaseDatabase.getInstance().getReference("DataRektor")
+        FirebaseDatabase.getInstance().getReference("DataBKN")
             .child("UsulanPelaksana")
             .child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
             .setValue(dataPengajuan)
 
         Toast.makeText(context, "Pengajuan berhasil ditolak", Toast.LENGTH_LONG).show()
 
-        val intent = Intent(this, MainRektorActivity::class.java)
+        val intent = Intent(this, MainBKNActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     @SuppressLint("SimpleDateFormat")
     private fun acceptDisposisi(nip: String, tglPengajuan: String, urlFile: String){
-        val tglRektor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val tglBKN = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-M-yyyy"))
         } else {
             SimpleDateFormat("dd-M-yyyy").format(Date())
@@ -253,17 +253,17 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
 
         Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
         progress.visibility = View.GONE
-        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiRektor")?.setValue(urlFile)
-        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BagianUmum")
-        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglRektor")?.setValue(tglRektor)
-        dataPengajuan?.disposisiRektor = urlFile
-        dataPengajuan?.tglRektor = tglRektor
-        FirebaseDatabase.getInstance().getReference("DataRektor")
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiBKN")?.setValue(urlFile)
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BKN")
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglBKN")?.setValue(tglBKN)
+        dataPengajuan?.disposisiBKN = urlFile
+        dataPengajuan?.tglBKN = tglBKN
+        FirebaseDatabase.getInstance().getReference("DataBKN")
             .child("UsulanPelaksana")
-            .child("${dataPengajuan?.nip}__${tglRektor}")
+            .child("${dataPengajuan?.nip}__${tglBKN}")
             .setValue(dataPengajuan)
 
-        val intent = Intent(this, MainRektorActivity::class.java)
+        val intent = Intent(this, MainBKNActivity::class.java)
         startActivity(intent)
         finish()
     }

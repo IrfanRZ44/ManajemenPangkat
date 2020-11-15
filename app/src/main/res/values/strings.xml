@@ -239,4 +239,6 @@
     <string name="buka_nota_usulan">Buka Nota Usulan</string>
     <string name="usulan_administrasi_rektor">Usulan Administrasi Rektor</string>
     <string name="nota_usulan">Nota Usulan</string>
+    <string name="bagian_umum">Bagian Umum</string>
+    <string name="bkn">BKN</string>
 </resources>
