@@ -109,9 +109,8 @@ class UsulStrukturalFakultasFragment : Fragment() {
                 if (result.exists()) {
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUsulanStruktural::class.java)
-                        Log.e("Data",  "${data?.nip} asda")
                         if (data != null){
-                            if (data.statusPengajuan && !data.statusAdminFakultas){
+                            if (data.statusPengajuan == "AdminFakultas" && !data.statusDitolak){
                                 listPengajuan.add(data)
                                 adapter?.notifyDataSetChanged()
                                 v.textStatus.visibility = View.GONE

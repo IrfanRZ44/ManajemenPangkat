@@ -1,8 +1,8 @@
-package com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana
+package com.exomatik.manajemenpangkat.ui.rektor.fragment.struktural
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
-import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
+import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,14 +19,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_usul_pelaksana_fakultas.view.*
 
-class UsulPelaksanaFakultasFragment : Fragment() {
+class UsulStrukturalRektorFragment : Fragment() {
     private lateinit var savedData : DataSave
-    private var listPengajuan = ArrayList<ModelUsulanPelaksana>()
-    private var adapter: AdapterUsulPelaksanaFakultas? = null
+    private var listPengajuan = ArrayList<ModelUsulanStruktural>()
+    private var adapter: AdapterUsulStrukturalRektor? = null
     private lateinit var v : View
 
     override fun onCreateView(paramLayoutInflater: LayoutInflater, paramViewGroup: ViewGroup?, paramBundle: Bundle?): View? {
-        v = paramLayoutInflater.inflate(R.layout.fragment_usul_pelaksana_fakultas, paramViewGroup, false)
+        v = paramLayoutInflater.inflate(R.layout.fragment_usul_struktural_fakultas, paramViewGroup, false)
 
         myCodeHere()
         onClick()
@@ -35,10 +35,11 @@ class UsulPelaksanaFakultasFragment : Fragment() {
 
     private fun myCodeHere(){
         savedData = DataSave(context)
-        adapter = AdapterUsulPelaksanaFakultas(
+        adapter =
+            AdapterUsulStrukturalRektor(
                 listPengajuan,
                 { nip: String, textNama: AppCompatTextView -> getDataPegawai(nip, textNama) },
-                { item: ModelUsulanPelaksana -> onClickItem(item) })
+                { item: ModelUsulanStruktural -> onClickItem(item) })
         v.rcProgress.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         v.rcProgress.adapter = adapter
 
@@ -52,11 +53,11 @@ class UsulPelaksanaFakultasFragment : Fragment() {
         }
     }
 
-    private fun onClickItem(item: ModelUsulanPelaksana) {
-        val intent = Intent(activity, DetailPelaksanaFakultasActivity::class.java)
-        intent.putExtra("dataPengajuan", item)
-        activity?.startActivity(intent)
-        activity?.finish()
+    private fun onClickItem(item: ModelUsulanStruktural) {
+//        val intent = Intent(activity, DetailStrukturalFakultasActivity::class.java)
+//        intent.putExtra("dataPengajuan", item)
+//        activity?.startActivity(intent)
+//        activity?.finish()
     }
 
     private fun getDataPegawai(nip: String, textNama: AppCompatTextView) {
@@ -106,9 +107,10 @@ class UsulPelaksanaFakultasFragment : Fragment() {
 
                 if (result.exists()) {
                     for (snapshot in result.children) {
-                        val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
+                        val data = snapshot.getValue(ModelUsulanStruktural::class.java)
+                        Log.e("Data",  "${data?.nip} asda")
                         if (data != null){
-                            if (data.statusPengajuan == "AdminFakultas" && !data.statusDitolak){
+                            if (data.statusPengajuan == "Rektor" && !data.statusDitolak){
                                 listPengajuan.add(data)
                                 adapter?.notifyDataSetChanged()
                                 v.textStatus.visibility = View.GONE
@@ -118,7 +120,7 @@ class UsulPelaksanaFakultasFragment : Fragment() {
 
                     if (listPengajuan.size == 0){
                         v.textStatus.visibility = View.VISIBLE
-                        v.textStatus.text = "Belum ada data pengajuan"
+                        v.textStatus.text = "Belum ada nota usulan"
                     }
                     else{
                         v.textStatus.visibility = View.GONE
@@ -126,14 +128,14 @@ class UsulPelaksanaFakultasFragment : Fragment() {
                     }
                 }
                 else{
-                    v.textStatus.text = "Belum ada data pengajuan"
+                    v.textStatus.text = "Belum ada nota usulan"
                     v.textStatus.visibility = View.VISIBLE
                 }
             }
         }
 
         FirebaseDatabase.getInstance()
-            .getReference("UsulanPelaksana")
+            .getReference("UsulanStruktural")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 }

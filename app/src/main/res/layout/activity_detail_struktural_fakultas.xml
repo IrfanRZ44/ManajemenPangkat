@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/CustomStyle"
     android:background="@color/white"
-    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanPelaksanaActivity">
+    tools:context="com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.struktural.DetailStrukturalFakultasActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

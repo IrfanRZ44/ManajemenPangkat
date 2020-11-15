@@ -7,9 +7,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
-import com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana.UsulPelaksanaFakultasFragment
-import com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.struktural.UsulStrukturalFakultasFragment
 import com.exomatik.manajemenpangkat.ui.auth.SplashActivity
+import com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana.UsulPelaksanaRektorFragment
+import com.exomatik.manajemenpangkat.ui.rektor.fragment.struktural.UsulStrukturalRektorFragment
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.SectionsPagerAdapter
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
@@ -36,8 +36,8 @@ class MainRektorActivity : AppCompatActivity(),
 
     private fun myCodeHere(){
         val adapter = SectionsPagerAdapter(supportFragmentManager)
-        adapter.addFragment(UsulPelaksanaFakultasFragment(), "Usulan Pelaksana")
-        adapter.addFragment(UsulStrukturalFakultasFragment(), "Usulan Struktural")
+        adapter.addFragment(UsulPelaksanaRektorFragment(), "Usulan Pelaksana")
+        adapter.addFragment(UsulStrukturalRektorFragment(), "Usulan Struktural")
         view_pagerr.adapter = adapter
         tabs.setupWithViewPager(view_pagerr)
     }

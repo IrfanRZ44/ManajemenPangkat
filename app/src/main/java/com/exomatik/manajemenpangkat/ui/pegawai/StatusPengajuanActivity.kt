@@ -61,45 +61,112 @@ class StatusPengajuanActivity : AppCompatActivity() {
                 if (result.exists()) {
                     val data = result.getValue(ModelUsulanPelaksana::class.java)
                     if (data != null){
-                        if (data.statusPengajuan){
-                            textStatus1.text = ""
-                            textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status1.setImageResource(R.color.blue4)
+                        when (data.statusPengajuan) {
+                            "AdminFakultas" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
 
-                            status2.setImageResource(R.color.green5)
-                        }
-                        if (data.statusAdminFakultas){
-                            textStatus2.text = ""
-                            textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status2.setImageResource(R.color.blue4)
+                                if (data.statusDitolak){
+                                    textStatus2.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status2.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status2.setImageResource(R.color.green5)
+                                }
+                            }
+                            "Rektor" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
 
-                            status3.setImageResource(R.color.green5)
-                        }
-                        if (data.statusRektor){
-                            textStatus3.text = ""
-                            textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status3.setImageResource(R.color.blue4)
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
 
-                            status4.setImageResource(R.color.green5)
-                        }
-                        if (data.statusBagianUmum){
-                            textStatus4.text = ""
-                            textStatus4.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status4.setImageResource(R.color.blue4)
+                                if (data.statusDitolak){
+                                    textStatus3.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status3.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status3.setImageResource(R.color.green5)
+                                }
+                            }
+                            "BagianUmum" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
 
-                            status5.setImageResource(R.color.green5)
-                        }
-                        if (data.statusBagianKepegawaian){
-                            textStatus5.text = ""
-                            textStatus5.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status5.setImageResource(R.color.blue4)
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
 
-                            status6.setImageResource(R.color.green5)
-                        }
-                        if (data.statusBKN){
-                            textStatus6.text = ""
-                            textStatus6.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status6.setImageResource(R.color.blue4)
+                                textStatus3.text = ""
+                                textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status3.setImageResource(R.color.blue4)
+
+                                if (data.statusDitolak){
+                                    textStatus4.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status4.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status4.setImageResource(R.color.green5)
+                                }
+                            }
+                            "BagianKepegawaian" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
+
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
+
+                                textStatus3.text = ""
+                                textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status3.setImageResource(R.color.blue4)
+
+                                textStatus4.text = ""
+                                textStatus4.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status4.setImageResource(R.color.blue4)
+
+                                if (data.statusDitolak){
+                                    textStatus5.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status5.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status5.setImageResource(R.color.green5)
+                                }
+                            }
+                            "BKN" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
+
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
+
+                                textStatus3.text = ""
+                                textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status3.setImageResource(R.color.blue4)
+
+                                textStatus4.text = ""
+                                textStatus4.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status4.setImageResource(R.color.blue4)
+
+                                textStatus5.text = ""
+                                textStatus5.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status5.setImageResource(R.color.blue4)
+
+                                if (data.statusDitolak){
+                                    textStatus6.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status6.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status6.setImageResource(R.color.green5)
+                                }
+                            }
                         }
                     }
                 }
@@ -130,45 +197,112 @@ class StatusPengajuanActivity : AppCompatActivity() {
                 if (result.exists()) {
                     val data = result.getValue(ModelUsulanStruktural::class.java)
                     if (data != null){
-                        if (data.statusPengajuan){
-                            textStatus1.text = ""
-                            textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status1.setImageResource(R.color.blue4)
+                        when (data.statusPengajuan) {
+                            "AdminFakultas" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
 
-                            status2.setImageResource(R.color.green5)
-                        }
-                        if (data.statusAdminFakultas){
-                            textStatus2.text = ""
-                            textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status2.setImageResource(R.color.blue4)
+                                if (data.statusDitolak){
+                                    textStatus2.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status2.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status2.setImageResource(R.color.green5)
+                                }
+                            }
+                            "Rektor" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
 
-                            status3.setImageResource(R.color.green5)
-                        }
-                        if (data.statusRektor){
-                            textStatus3.text = ""
-                            textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status3.setImageResource(R.color.blue4)
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
 
-                            status4.setImageResource(R.color.green5)
-                        }
-                        if (data.statusBagianUmum){
-                            textStatus4.text = ""
-                            textStatus4.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status4.setImageResource(R.color.blue4)
+                                if (data.statusDitolak){
+                                    textStatus3.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status3.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status3.setImageResource(R.color.green5)
+                                }
+                            }
+                            "BagianUmum" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
 
-                            status5.setImageResource(R.color.green5)
-                        }
-                        if (data.statusBagianKepegawaian){
-                            textStatus5.text = ""
-                            textStatus5.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status5.setImageResource(R.color.blue4)
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
 
-                            status6.setImageResource(R.color.green5)
-                        }
-                        if (data.statusBKN){
-                            textStatus6.text = ""
-                            textStatus6.background = resources.getDrawable(R.drawable.ic_true_white)
-                            status6.setImageResource(R.color.blue4)
+                                textStatus3.text = ""
+                                textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status3.setImageResource(R.color.blue4)
+
+                                if (data.statusDitolak){
+                                    textStatus4.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status4.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status4.setImageResource(R.color.green5)
+                                }
+                            }
+                            "BagianKepegawaian" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
+
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
+
+                                textStatus3.text = ""
+                                textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status3.setImageResource(R.color.blue4)
+
+                                textStatus4.text = ""
+                                textStatus4.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status4.setImageResource(R.color.blue4)
+
+                                if (data.statusDitolak){
+                                    textStatus5.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status5.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status5.setImageResource(R.color.green5)
+                                }
+                            }
+                            "BKN" -> {
+                                textStatus1.text = ""
+                                textStatus1.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status1.setImageResource(R.color.blue4)
+
+                                textStatus2.text = ""
+                                textStatus2.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status2.setImageResource(R.color.blue4)
+
+                                textStatus3.text = ""
+                                textStatus3.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status3.setImageResource(R.color.blue4)
+
+                                textStatus4.text = ""
+                                textStatus4.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status4.setImageResource(R.color.blue4)
+
+                                textStatus5.text = ""
+                                textStatus5.background = resources.getDrawable(R.drawable.ic_true_white)
+                                status5.setImageResource(R.color.blue4)
+
+                                if (data.statusDitolak){
+                                    textStatus6.background = resources.getDrawable(R.drawable.ic_close_red)
+                                    status6.setImageResource(R.color.gray1)
+                                }
+                                else{
+                                    status6.setImageResource(R.color.green5)
+                                }
+                            }
                         }
                     }
                 }

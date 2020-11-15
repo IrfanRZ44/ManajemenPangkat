@@ -235,4 +235,8 @@
     <string name="administrasi_struktural">Administrasi Struktural</string>
     <string name="usulan_administrasi_struktural">Usulan Administrasi Struktural</string>
     <string name="no_item">Anda belum memiliki daftar pengajuan berkas</string>
+    <string name="disposisi">Disposisi</string>
+    <string name="buka_nota_usulan">Buka Nota Usulan</string>
+    <string name="usulan_administrasi_rektor">Usulan Administrasi Rektor</string>
+    <string name="nota_usulan">Nota Usulan</string>
 </resources>

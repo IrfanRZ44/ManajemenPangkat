@@ -450,27 +450,9 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
             }
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun getUrlFile(taskSnapshot: UploadTask.TaskSnapshot, nip: String, tglPengajuan: String){
         val onSuccessListener = OnSuccessListener<Uri?>{
-            val tglAdminFakultas = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-M-yyyy"))
-            } else {
-                SimpleDateFormat("dd-M-yyyy").format(Date())
-            }
-
-            Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
-            progress.visibility = View.GONE
-            mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiAdminFakultas")?.setValue(it.toString())
-            mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusAdminFakultas")?.setValue(true)
-            mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglAdminFakultas")?.setValue(tglAdminFakultas)
-            FirebaseDatabase.getInstance().getReference("DataAdminFakultas")
-                .child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
-                .setValue(dataPengajuan)
-
-            val intent = Intent(this, MainFakultasActivity::class.java)
-            startActivity(intent)
-            finish()
+            acceptData(nip, tglPengajuan, it.toString())
         }
 
         val onFailureListener = OnFailureListener {
@@ -510,26 +492,7 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
                 Toast.makeText(context, "Error, mohon masukkan alasan penolakan", Toast.LENGTH_LONG).show()
             }
             else{
-                dataPengajuan?.statusPengajuan = false
-                dataPengajuan?.statusAdminFakultas = false
-                dataPengajuan?.memoAdminFakultas = note
-
-                mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
-                    ?.child("statusAdminFakultas")?.setValue(false)
-                mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
-                    ?.child("statusPengajuan")?.setValue(false)
-                mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
-                    ?.child("memoAdminFakultas")?.setValue(note)
-
-                FirebaseDatabase.getInstance().getReference("DataAdminFakultas/UsulanPelaksana")
-                    .child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
-                    .setValue(dataPengajuan)
-
-                Toast.makeText(context, "Pengajuan berhasil ditolak", Toast.LENGTH_LONG).show()
-
-                val intent = Intent(this, MainFakultasActivity::class.java)
-                startActivity(intent)
-                finish()
+                rejectData(note, context)
             }
         }
         alert.setNegativeButton(
@@ -539,5 +502,51 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
         }
 
         alert.show()
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun acceptData(nip: String, tglPengajuan: String, urlFile: String){
+        val tglAdminFakultas = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-M-yyyy"))
+        } else {
+            SimpleDateFormat("dd-M-yyyy").format(Date())
+        }
+
+        Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
+        progress.visibility = View.GONE
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiAdminFakultas")?.setValue(urlFile)
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("Rektor")
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglAdminFakultas")?.setValue(tglAdminFakultas)
+        dataPengajuan?.disposisiAdminFakultas = urlFile
+        dataPengajuan?.tglAdminFakultas = tglAdminFakultas
+        FirebaseDatabase.getInstance().getReference("DataAdminFakultas")
+            .child("UsulanPelaksana")
+            .child("${dataPengajuan?.nip}__${tglAdminFakultas}")
+            .setValue(dataPengajuan)
+
+        val intent = Intent(this, MainFakultasActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun rejectData(note: String, context: Context){
+        dataPengajuan?.statusDitolak = true
+        dataPengajuan?.catatanDitolak = note
+
+        mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
+            ?.child("statusDitolak")?.setValue(true)
+        mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
+            ?.child("catatanDitolak")?.setValue(note)
+
+        FirebaseDatabase.getInstance().getReference("DataAdminFakultas")
+            .child("UsulanPelaksana")
+            .child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
+            .setValue(dataPengajuan)
+
+        Toast.makeText(context, "Pengajuan berhasil ditolak", Toast.LENGTH_LONG).show()
+
+        val intent = Intent(this, MainFakultasActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

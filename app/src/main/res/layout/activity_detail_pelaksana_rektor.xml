@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/CustomStyle"
     android:background="@color/white"
-    tools:context="com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana.DetailPelaksanaFakultasActivity">
+    tools:context="com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana.DetailPelaksanaRektorActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_1_karpeg"
                     android:textSize="@dimen/text_h2"
@@ -73,24 +73,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnKarpegDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnKarpeg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -113,7 +99,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_2_sk_cpns"
                     android:textSize="@dimen/text_h2"
@@ -121,24 +107,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnSKCPNSDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSKCPNS"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -160,7 +132,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_3_sk_pns"
                     android:textSize="@dimen/text_h2"
@@ -168,24 +140,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnSKPNSDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSKPNS"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -207,7 +165,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_4_sk_pangkat_terakhir"
                     android:textSize="@dimen/text_h2"
@@ -215,24 +173,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnSKPangkatTerakhirDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSKPangkatTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -254,7 +198,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_5_sk_jabatan_pelaksana_sk_jabatan_terakhir"
                     android:textSize="@dimen/text_h2"
@@ -262,24 +206,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnSKJabatanTerakhirDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSKJabatanTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -302,7 +232,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_6_pak_terakhir"
                     android:textSize="@dimen/text_h2"
@@ -310,24 +240,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnPAKTerakhirDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnPAKTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -349,7 +265,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_7_sk_fungsional_terakhir"
                     android:textSize="@dimen/text_h2"
@@ -357,24 +273,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnFungsionalTerakhirDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnFungsionalTerakhir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -396,7 +298,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_8_skp_2_tahun_terakhir"
                     android:textSize="@dimen/text_h2"
@@ -404,24 +306,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnSKPDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSKP"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -443,7 +331,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_9_ijazah_terakhir"
                     android:textSize="@dimen/text_h2"
@@ -451,24 +339,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnIjazahDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnIjazah"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -490,7 +364,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/_10_transkrip_nilai_dilegalisir"
                     android:textSize="@dimen/text_h2"
@@ -498,24 +372,10 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:text="@string/decline"
-                    android:id="@+id/btnTranskripDecline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:padding="@dimen/h2"
-                    android:textColor="@color/gray3"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_close_gray"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginEnd="@dimen/h5"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnTranskrip"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:padding="@dimen/h2"
                     android:text="@string/open"
                     android:textColor="@color/orange1"
@@ -529,22 +389,22 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/kirim_nota"
-                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/nota_usulan"
+                android:textColor="@color/orange1"
                 android:textSize="@dimen/text_h2"
                 android:fontFamily="@font/roboto_regular"
-                android:drawableEnd="@drawable/ic_true_green"
+                android:drawableStart="@drawable/ic_open_orange"
                 android:drawablePadding="@dimen/h2"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/h5"
                 android:padding="@dimen/h2"
                 android:backgroundTint="@color/white"
-                android:id="@+id/btnSend"
+                android:id="@+id/btnOpenNota"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/h5"
                 />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/h5"
+                android:layout_height="@dimen/margin_large"
                 android:background="@android:color/transparent"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana
+package com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -19,10 +19,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_usul_pelaksana_fakultas.view.*
 
-class UsulPelaksanaFakultasFragment : Fragment() {
+class UsulPelaksanaRektorFragment : Fragment() {
     private lateinit var savedData : DataSave
     private var listPengajuan = ArrayList<ModelUsulanPelaksana>()
-    private var adapter: AdapterUsulPelaksanaFakultas? = null
+    private var adapter: AdapterUsulPelaksanaRektor? = null
     private lateinit var v : View
 
     override fun onCreateView(paramLayoutInflater: LayoutInflater, paramViewGroup: ViewGroup?, paramBundle: Bundle?): View? {
@@ -35,7 +35,7 @@ class UsulPelaksanaFakultasFragment : Fragment() {
 
     private fun myCodeHere(){
         savedData = DataSave(context)
-        adapter = AdapterUsulPelaksanaFakultas(
+        adapter = AdapterUsulPelaksanaRektor(
                 listPengajuan,
                 { nip: String, textNama: AppCompatTextView -> getDataPegawai(nip, textNama) },
                 { item: ModelUsulanPelaksana -> onClickItem(item) })
@@ -53,7 +53,7 @@ class UsulPelaksanaFakultasFragment : Fragment() {
     }
 
     private fun onClickItem(item: ModelUsulanPelaksana) {
-        val intent = Intent(activity, DetailPelaksanaFakultasActivity::class.java)
+        val intent = Intent(activity, DetailPelaksanaRektorActivity::class.java)
         intent.putExtra("dataPengajuan", item)
         activity?.startActivity(intent)
         activity?.finish()
@@ -108,7 +108,7 @@ class UsulPelaksanaFakultasFragment : Fragment() {
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
                         if (data != null){
-                            if (data.statusPengajuan == "AdminFakultas" && !data.statusDitolak){
+                            if (data.statusPengajuan == "Rektor" && !data.statusDitolak){
                                 listPengajuan.add(data)
                                 adapter?.notifyDataSetChanged()
                                 v.textStatus.visibility = View.GONE
@@ -118,7 +118,7 @@ class UsulPelaksanaFakultasFragment : Fragment() {
 
                     if (listPengajuan.size == 0){
                         v.textStatus.visibility = View.VISIBLE
-                        v.textStatus.text = "Belum ada data pengajuan"
+                        v.textStatus.text = "Belum ada nota usulan"
                     }
                     else{
                         v.textStatus.visibility = View.GONE
@@ -126,7 +126,7 @@ class UsulPelaksanaFakultasFragment : Fragment() {
                     }
                 }
                 else{
-                    v.textStatus.text = "Belum ada data pengajuan"
+                    v.textStatus.text = "Belum ada nota usulan"
                     v.textStatus.visibility = View.VISIBLE
                 }
             }

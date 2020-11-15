@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelNotifikasiPegawai
+import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
 import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.firebase.database.DataSnapshot
@@ -45,6 +46,14 @@ class RiwayatFakultasActivity : AppCompatActivity() {
     }
 
     private fun onClick() {
+        swipeRefresh.setOnRefreshListener {
+            swipeRefresh.isRefreshing = false
+            listProgress.clear()
+            adapter?.notifyDataSetChanged()
+            getDataPelaksana()
+            getDataStruktural()
+        }
+
         btnBack.setOnClickListener {
             val intent = Intent(this, MainFakultasActivity::class.java)
             startActivity(intent)
@@ -78,15 +87,15 @@ class RiwayatFakultasActivity : AppCompatActivity() {
 
                 if (result.exists()) {
                     for (snapshot in result.children) {
-                        val data = snapshot.getValue(ModelUsulanStruktural::class.java)
+                        val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
                         if (data != null){
-                            if (data.statusAdminFakultas){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas ${data.nip}", data.disposisiAdminFakultas, "", 1))
-                                adapter?.notifyDataSetChanged()
-                            }
-                            else{
-                                if (data.memoAdminFakultas.isNotEmpty()){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas ${data.nip}", "", data.memoAdminFakultas, 2))
+                            if (data.statusPengajuan == "AdminFakultas"){
+                                if (data.statusDitolak){
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas ${data.nip} (Pelaksana)", "", data.catatanDitolak, 2))
+                                    adapter?.notifyDataSetChanged()
+                                }
+                                else{
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas ${data.nip} (Pelaksana)", data.disposisiAdminFakultas, "", 1))
                                     adapter?.notifyDataSetChanged()
                                 }
                             }
@@ -104,7 +113,8 @@ class RiwayatFakultasActivity : AppCompatActivity() {
         }
 
         FirebaseDatabase.getInstance()
-            .getReference("DataAdminFakultas/UsulanPelaksana")
+            .getReference("DataAdminFakultas")
+            .child("UsulanPelaksana")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 
@@ -129,13 +139,13 @@ class RiwayatFakultasActivity : AppCompatActivity() {
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUsulanStruktural::class.java)
                         if (data != null){
-                            if (data.statusAdminFakultas){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas ${data.nip}", data.disposisiAdminFakultas, "", 1))
-                                adapter?.notifyDataSetChanged()
-                            }
-                            else{
-                                if (data.memoAdminFakultas.isNotEmpty()){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas ${data.nip}", "", data.memoAdminFakultas, 2))
+                            if (data.statusPengajuan == "AdminFakultas"){
+                                if (data.statusDitolak){
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas ${data.nip} (Struktural)", "", data.catatanDitolak, 2))
+                                    adapter?.notifyDataSetChanged()
+                                }
+                                else{
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas ${data.nip} (Struktural)", data.disposisiAdminFakultas, "", 1))
                                     adapter?.notifyDataSetChanged()
                                 }
                             }
@@ -153,7 +163,8 @@ class RiwayatFakultasActivity : AppCompatActivity() {
         }
 
         FirebaseDatabase.getInstance()
-            .getReference("DataAdminFakultas/UsulanStruktural")
+            .getReference("DataAdminFakultas")
+            .child("UsulanStruktural")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 }

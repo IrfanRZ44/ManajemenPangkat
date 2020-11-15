@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
+import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
 import com.exomatik.manajemenpangkat.ui.pegawai.BiodataActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.PangkatActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.StatusPengajuanActivity
@@ -102,11 +103,10 @@ class HomePegawaiFragment : Fragment() {
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
 
-                        if (data != null && data.statusPengajuan){
-                            Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
-                        }
-                        else{
-                            if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
+                        if (data != null && data.statusPengajuan.isNotEmpty() && data.pangkatAwal.isNotEmpty()
+                            && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
+
+                            if (data.statusDitolak) {
                                 val intent = Intent(activity, UsulanPelaksanaActivity::class.java)
                                 intent.putExtra("awal", data.pangkatAwal)
                                 intent.putExtra("usul", data.pangkatUsulan)
@@ -114,8 +114,11 @@ class HomePegawaiFragment : Fragment() {
                                 activity?.finish()
                             }
                             else{
-                                checkUsulanStruktural(dataUser)
+                                Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
                             }
+                        }
+                        else{
+                            checkUsulanStruktural(dataUser)
                         }
                     }
                 }
@@ -149,13 +152,12 @@ class HomePegawaiFragment : Fragment() {
 
                 if (result.exists()) {
                     for (snapshot in result.children) {
-                        val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
+                        val data = snapshot.getValue(ModelUsulanStruktural::class.java)
 
-                        if (data != null && data.statusPengajuan){
-                            Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
-                        }
-                        else{
-                            if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
+                        if (data != null && data.statusPengajuan.isNotEmpty() && data.pangkatAwal.isNotEmpty()
+                            && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
+
+                            if (data.statusDitolak){
                                 val intent = Intent(activity, UsulanStrukturalActivity::class.java)
                                 intent.putExtra("awal", data.pangkatAwal)
                                 intent.putExtra("usul", data.pangkatUsulan)
@@ -163,10 +165,13 @@ class HomePegawaiFragment : Fragment() {
                                 activity?.finish()
                             }
                             else{
-                                val intent = Intent(activity, UsulKPActivity::class.java)
-                                activity?.startActivity(intent)
-                                activity?.finish()
+                                Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
                             }
+                        }
+                        else{
+                            val intent = Intent(activity, UsulKPActivity::class.java)
+                            activity?.startActivity(intent)
+                            activity?.finish()
                         }
                     }
                 }

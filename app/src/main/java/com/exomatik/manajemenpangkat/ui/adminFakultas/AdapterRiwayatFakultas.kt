@@ -25,7 +25,7 @@ class AdapterRiwayatFakultas (private val listKelas : ArrayList<ModelNotifikasiP
             viewItem.textTanggal.text = item.tgl
             when (item.status) {
                 1 -> {
-                    viewItem.textProgress.text = "Selesai"
+                    viewItem.textProgress.text = "Disetujui"
                     context?.resources?.getColor(R.color.colorPrimaryDark)?.let {
                         viewItem.textProgress.setTextColor(
                             it
