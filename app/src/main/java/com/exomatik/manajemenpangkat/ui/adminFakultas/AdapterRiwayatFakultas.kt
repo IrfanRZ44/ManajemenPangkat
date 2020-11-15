@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.pegawai
+package com.exomatik.manajemenpangkat.ui.adminFakultas
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,15 +13,15 @@ import com.exomatik.manajemenpangkat.model.ModelNotifikasiPegawai
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
 import kotlinx.android.synthetic.main.item_notifikasi_pegawai.view.*
 
-class AdapterNotifikasiPegawai (private val listKelas : ArrayList<ModelNotifikasiPegawai>,
-                                private val context: Context?
-) : RecyclerView.Adapter<AdapterNotifikasiPegawai.AfiliasiHolder>(){
+class AdapterRiwayatFakultas (private val listKelas : ArrayList<ModelNotifikasiPegawai>,
+                              private val context: Context?
+) : RecyclerView.Adapter<AdapterRiwayatFakultas.AfiliasiHolder>(){
 
     inner class AfiliasiHolder(private val viewItem : View) : RecyclerView.ViewHolder(viewItem){
         @Suppress("DEPRECATION")
         @SuppressLint("SetTextI18n")
         fun bindAfiliasi(item: ModelNotifikasiPegawai){
-            viewItem.textName.text = item.namaStatus
+            viewItem.textName.text = "Proses ${item.namaStatus}"
             viewItem.textTanggal.text = item.tgl
             when (item.status) {
                 1 -> {
@@ -54,16 +54,6 @@ class AdapterNotifikasiPegawai (private val listKelas : ArrayList<ModelNotifikas
                     viewItem.setOnClickListener {
                         Toast.makeText(context, "Alasan di tolak : ${item.memo}", Toast.LENGTH_LONG).show()
                     }
-                }
-                else -> {
-                    viewItem.textProgress.text = "Sedang diproses"
-                    context?.resources?.getColor(R.color.gray3)?.let {
-                        viewItem.textProgress.setTextColor(
-                            it
-                        )
-                    }
-                    val img = context?.resources?.getDrawable(R.drawable.ic_time_gray)
-                    viewItem.textProgress.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
                 }
             }
         }

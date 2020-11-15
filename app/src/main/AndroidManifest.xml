@@ -100,13 +100,31 @@
             android:theme="@style/CustomTheme"/>
 
         <activity
+            android:name="com.exomatik.manajemenpangkat.ui.rektor.MainRektorActivity"
+            android:label="@string/rektor"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.adminFakultas.RiwayatFakultasActivity"
+            android:label="@string/riwayat"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
             android:name="com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana.DetailPelaksanaFakultasActivity"
             android:label="@string/usulan_administrasi_pelaksana"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.adminFakultas.DetailPDFActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.struktural.DetailStrukturalFakultasActivity"
+            android:label="@string/usulan_administrasi_struktural"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.utils.DetailPDFActivity"
             android:label="@string/file"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>

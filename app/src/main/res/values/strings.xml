@@ -218,7 +218,7 @@
     <string name="disposisi_admin_bagian_umum">Disposisi Admin Bagian Umum</string>
     <string name="disposisi_admin_bagian_kepegawaian">Disposisi Admin Bagian Kepegawaian</string>
     <string name="persetujuan_bkn">Persetujuan BKN</string>
-    <string name="kirim_berkas">Kirim Berkas</string>
+    <string name="kirim_nota">Kirim Nota</string>
     <string name="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat</string>
     <string name="sedang_diproses">Sedang diproses</string>
     <string name="admin_fakultas">Admin Fakultas</string>
@@ -227,4 +227,12 @@
     <string name="usulan_administrasi_pelaksana">Usulan Administrasi Pelaksana</string>
     <string name="open">Open</string>
     <string name="file">File</string>
+    <string name="nama_file">Nama File</string>
+    <string name="decline">Decline</string>
+    <string name="kirim_berkas">Kirim Berkas</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="rektor">Rektor</string>
+    <string name="administrasi_struktural">Administrasi Struktural</string>
+    <string name="usulan_administrasi_struktural">Usulan Administrasi Struktural</string>
+    <string name="no_item">Anda belum memiliki daftar pengajuan berkas</string>
 </resources>

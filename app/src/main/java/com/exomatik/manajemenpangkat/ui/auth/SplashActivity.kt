@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.ui.adminFakultas.MainFakultasActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
+import com.exomatik.manajemenpangkat.ui.rektor.MainRektorActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 
 class SplashActivity : AppCompatActivity() {
@@ -49,8 +50,11 @@ class SplashActivity : AppCompatActivity() {
             val intent = if (jenisUser == "Pegawai"){
                 Intent(this, MainPegawaiActivity::class.java)
             }
-            else{
+            else if (jenisUser == "AdminFakultas"){
                 Intent(this, MainFakultasActivity::class.java)
+            }
+            else{
+                Intent(this, MainRektorActivity::class.java)
             }
 
             startActivity(intent)

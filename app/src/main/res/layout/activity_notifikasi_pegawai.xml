@@ -35,7 +35,9 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_h3"
                 android:textStyle="bold"
-                tools:ignore="RelativeOverlap" />
+                tools:ignore="RelativeOverlap"
+                android:id="@+id/textTitle"
+                />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -58,7 +60,10 @@
             android:layout_marginBottom="@dimen/h2"
             android:textAlignment="center"
             android:textColor="@color/gray2"
-            android:textSize="@dimen/text_h3" />
+            android:textSize="@dimen/text_h3"
+            android:text="@string/no_item"
+            android:visibility="gone"
+            />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"

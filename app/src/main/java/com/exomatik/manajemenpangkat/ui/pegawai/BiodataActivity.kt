@@ -50,6 +50,5 @@ class BiodataActivity : AppCompatActivity() {
         etTMTPangkat.editText?.setText(dataUser.tmtPangkat)
         etNoSKPangkat.editText?.setText(dataUser.nomorSKPangkat)
         etTglSkPangkat.editText?.setText(dataUser.tglSKPangkat)
-
     }
 }

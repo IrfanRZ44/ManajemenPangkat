@@ -7,5 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class ModelNotifikasiPegawai(
     var tgl: String = "",
     var namaStatus: String = "",
-    var status: Boolean= false
+    var url: String = "",
+    var memo: String = "",
+    var status: Int= 0
     ) : Parcelable

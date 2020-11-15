@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana
+package com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.struktural
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
-import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
+import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
 import com.exomatik.manajemenpangkat.ui.adminFakultas.MainFakultasActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
@@ -29,23 +29,23 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import kotlinx.android.synthetic.main.activity_detail_pelaksana_fakultas.*
+import kotlinx.android.synthetic.main.activity_detail_struktural_fakultas.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class DetailPelaksanaFakultasActivity : AppCompatActivity() {
+class DetailStrukturalFakultasActivity : AppCompatActivity() {
     private lateinit var savedData : DataSave
     private val getPDFCode = 86
     private var mStorageReference: StorageReference? = null
     private var mDatabaseReference: DatabaseReference? = null
-    private var dataPengajuan: ModelUsulanPelaksana? = null
+    private var dataPengajuan: ModelUsulanStruktural? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_detail_pelaksana_fakultas)
+        setContentView(R.layout.activity_detail_struktural_fakultas)
         myCodeHere()
     }
 
@@ -53,12 +53,12 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
         savedData = DataSave(this)
         dataPengajuan = intent.getParcelableExtra("dataPengajuan")
 
-        mStorageReference = FirebaseStorage.getInstance().getReference("UsulanPelaksana")
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("UsulanPelaksana")
+        mStorageReference = FirebaseStorage.getInstance().getReference("UsulanStruktural")
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("UsulanStruktural")
         onClick()
         onClickDecline()
 
-        val data = intent.getParcelableExtra<ModelUsulanPelaksana>("dataPengajuan")
+        val data = intent.getParcelableExtra<ModelUsulanStruktural>("dataPengajuan")
         if (data != null){
             setData(data)
         }
@@ -66,7 +66,7 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     @SuppressLint("SetTextI18n")
-    private fun setData(data: ModelUsulanPelaksana){
+    private fun setData(data: ModelUsulanStruktural){
         if (data.Karpeg.isEmpty()){
             btnKarpeg.isEnabled = false
             btnKarpegDecline.isEnabled = false
@@ -117,9 +117,9 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
             btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
         }
 
-        if (data.PAKTerakhir.isEmpty()){
-            btnPAKTerakhir.isEnabled = false
-            btnPAKTerakhirDecline.isEnabled = false
+        if (data.SuratPelantikan.isEmpty()){
+            btnSuratPelantikan.isEnabled = false
+            btnSuratPelantikanDecline.isEnabled = false
 
             btnSend.text = "Tolak Berkas"
             btnSend.setTextColor(resources.getColor(R.color.red1))
@@ -127,9 +127,9 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
             btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
         }
 
-        if (data.FungsionalTerakhir.isEmpty()){
-            btnFungsionalTerakhir.isEnabled = false
-            btnFungsionalTerakhirDecline.isEnabled = false
+        if (data.SuratTugas.isEmpty()){
+            btnSuratTugas.isEnabled = false
+            btnSuratTugasDecline.isEnabled = false
 
             btnSend.text = "Tolak Berkas"
             btnSend.setTextColor(resources.getColor(R.color.red1))
@@ -205,12 +205,12 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
             dataPengajuan?.SKJabatanTerakhir?.let { it1 -> openPdf(it1) }
         }
 
-        btnPAKTerakhir.setOnClickListener {
-            dataPengajuan?.PAKTerakhir?.let { it1 -> openPdf(it1) }
+        btnSuratPelantikan.setOnClickListener {
+            dataPengajuan?.SuratPelantikan?.let { it1 -> openPdf(it1) }
         }
 
-        btnFungsionalTerakhir.setOnClickListener {
-            dataPengajuan?.FungsionalTerakhir?.let { it1 -> openPdf(it1) }
+        btnSuratTugas.setOnClickListener {
+            dataPengajuan?.SuratTugas?.let { it1 -> openPdf(it1) }
         }
 
         btnSKP.setOnClickListener {
@@ -314,15 +314,15 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
             }
         }
 
-        btnPAKTerakhirDecline.setOnClickListener {
+        btnSuratPelantikanDecline.setOnClickListener {
             val nip = dataPengajuan?.nip
 
             if (nip != null){
-                dataPengajuan?.PAKTerakhir = ""
-                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("PAKTerakhir")?.setValue("")
+                dataPengajuan?.SuratPelantikan = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("SuratPelantikan")?.setValue("")
 
-                btnPAKTerakhirDecline.isEnabled = false
-                btnPAKTerakhir.isEnabled = false
+                btnSuratPelantikanDecline.isEnabled = false
+                btnSuratPelantikan.isEnabled = false
 
                 btnSend.text = "Tolak Berkas"
                 btnSend.setTextColor(resources.getColor(R.color.red1))
@@ -331,15 +331,15 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
             }
         }
 
-        btnFungsionalTerakhirDecline.setOnClickListener {
+        btnSuratTugasDecline.setOnClickListener {
             val nip = dataPengajuan?.nip
 
             if (nip != null){
-                dataPengajuan?.FungsionalTerakhir = ""
-                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("FungsionalTerakhir")?.setValue("")
+                dataPengajuan?.SuratTugas = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("SuratTugas")?.setValue("")
 
-                btnFungsionalTerakhirDecline.isEnabled = false
-                btnFungsionalTerakhir.isEnabled = false
+                btnSuratTugasDecline.isEnabled = false
+                btnSuratTugas.isEnabled = false
 
                 btnSend.text = "Tolak Berkas"
                 btnSend.setTextColor(resources.getColor(R.color.red1))
@@ -521,7 +521,7 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
                 mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
                     ?.child("memoAdminFakultas")?.setValue(note)
 
-                FirebaseDatabase.getInstance().getReference("DataAdminFakultas/UsulanPelaksana")
+                FirebaseDatabase.getInstance().getReference("DataAdminFakultas/UsulanStruktural")
                     .child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
                     .setValue(dataPengajuan)
 

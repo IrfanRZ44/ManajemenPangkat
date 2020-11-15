@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.adminFakultas
+package com.exomatik.manajemenpangkat.ui.rektor
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,9 +15,9 @@ import com.exomatik.manajemenpangkat.utils.SectionsPagerAdapter
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
-import kotlinx.android.synthetic.main.activity_main_fakultas.*
+import kotlinx.android.synthetic.main.activity_main_rektor.*
 
-class MainFakultasActivity : AppCompatActivity(),
+class MainRektorActivity : AppCompatActivity(),
     RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?> {
     private lateinit var savedData : DataSave
     private var exit = false
@@ -26,7 +26,7 @@ class MainFakultasActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main_fakultas)
+        setContentView(R.layout.activity_main_rektor)
 
         savedData = DataSave(this)
 
@@ -93,9 +93,9 @@ class MainFakultasActivity : AppCompatActivity(),
 
     override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<Any?>?) {
         if (position == 0){
-            val intent = Intent(this, RiwayatFakultasActivity::class.java)
-            startActivity(intent)
-            finish()
+//            val intent = Intent(this, RiwayatFakultasActivity::class.java)
+//            startActivity(intent)
+//            finish()
         }
         else{
             savedData.setDataObject(ModelUser(), "Users")
@@ -108,9 +108,9 @@ class MainFakultasActivity : AppCompatActivity(),
 
     override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<Any?>?) {
         if (position == 0){
-            val intent = Intent(this, RiwayatFakultasActivity::class.java)
-            startActivity(intent)
-            finish()
+//            val intent = Intent(this, RiwayatFakultasActivity::class.java)
+//            startActivity(intent)
+//            finish()
         }
         else{
             savedData.setDataObject(ModelUser(), "Users")

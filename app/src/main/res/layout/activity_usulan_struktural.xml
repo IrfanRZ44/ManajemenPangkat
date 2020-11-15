@@ -32,7 +32,7 @@
                     android:id="@+id/btnBack"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:text="@string/administrasi_pelaksana"
+                    android:text="@string/administrasi_struktural"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"

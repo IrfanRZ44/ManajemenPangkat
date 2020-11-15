@@ -111,7 +111,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
 
         FirebaseDatabase.getInstance()
             .getReference("UsulanPelaksana")
-            .child(dataUser.nip)
+            .child("${dataUser.nip}__${dataUser.tglPengajuan}")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 
@@ -177,7 +177,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
 
         FirebaseDatabase.getInstance()
             .getReference("UsulanStruktural")
-            .child(dataUser.nip)
+            .child("${dataUser.nip}__${dataUser.tglPengajuan}")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 }

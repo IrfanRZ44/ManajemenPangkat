@@ -1,6 +1,5 @@
 package com.exomatik.manajemenpangkat.ui.pegawai
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -16,8 +15,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_notifikasi_pegawai.*
-import kotlinx.android.synthetic.main.activity_notifikasi_pegawai.btnBack
-import kotlinx.android.synthetic.main.activity_notifikasi_pegawai.progress
 
 class NotifikasiPegawaiActivity : AppCompatActivity() {
     private lateinit var savedData : DataSave
@@ -34,10 +31,16 @@ class NotifikasiPegawaiActivity : AppCompatActivity() {
     private fun myCodeHere(){
         savedData = DataSave(this)
         adapter = AdapterNotifikasiPegawai(listProgress, this)
-        rcProgress.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        layoutManager.stackFromEnd = true
+        layoutManager.reverseLayout = true
+        rcProgress.layoutManager = layoutManager
         rcProgress.adapter = adapter
 
-        savedData.getDataUser()?.let { getDataPelaksana(it) }
+        savedData.getDataUser()?.let {
+            getDataPelaksana(it)
+            getDataStruktural(it)
+        }
         onClick()
     }
 
@@ -55,181 +58,245 @@ class NotifikasiPegawaiActivity : AppCompatActivity() {
         finish()
     }
 
-    @Suppress("DEPRECATION")
     private fun getDataPelaksana(dataUser: ModelUser){
         progress.visibility = View.VISIBLE
 
         val valueEventListener = object : ValueEventListener {
             override fun onCancelled(result: DatabaseError) {
                 progress.visibility = View.GONE
-                getDataStruktural(dataUser)
+
+                if (listProgress.size == 0){
+                    textStatus.visibility = View.VISIBLE
+                }
+                else{
+                    textStatus.visibility = View.GONE
+                }
             }
 
             override fun onDataChange(result: DataSnapshot) {
                 progress.visibility = View.GONE
 
                 if (result.exists()) {
-                    val data = result.getValue(ModelUsulanStruktural::class.java)
-                    if (data != null){
-                        if (data.statusPengajuan){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas", true))
-                            adapter?.notifyDataSetChanged()
-                            textStatus.visibility = View.GONE
-
-                            if (data.statusAdminFakultas){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas", true))
+                    for (snapshot in result.children) {
+                        val data = snapshot.getValue(ModelUsulanStruktural::class.java)
+                        if (data != null && data.nip == dataUser.nip){
+                            if (data.statusPengajuan){
+                                listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Pelaksana)", "", "", 1))
                                 adapter?.notifyDataSetChanged()
-                                textStatus.visibility = View.GONE
-                                if (data.statusRektor){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", true))
+
+                                if (data.statusAdminFakultas){
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas (Pelaksana)", data.disposisiAdminFakultas, "", 1))
                                     adapter?.notifyDataSetChanged()
-                                    textStatus.visibility = View.GONE
-                                    if (data.statusBagianUmum){
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum", true))
+                                    if (data.statusRektor){
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", data.disposisiRektor, "", 1))
                                         adapter?.notifyDataSetChanged()
-                                        textStatus.visibility = View.GONE
-                                        if (data.statusBagianKepegawaian){
-                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian", true))
+                                        if (data.statusBagianUmum){
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Pelaksana)", data.disposisiBagianUmum, "", 1))
                                             adapter?.notifyDataSetChanged()
-                                            textStatus.visibility = View.GONE
-                                            if (data.statusBKN){
-                                                listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN", true))
+                                            if (data.statusBagianKepegawaian){
+                                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Pelaksana)", data.disposisiBagianKepegawaian, "", 1))
                                                 adapter?.notifyDataSetChanged()
-                                                textStatus.visibility = View.GONE
+                                                if (data.statusBKN){
+                                                    listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN (Pelaksana)", data.disposisiBKN, "", 1))
+                                                    adapter?.notifyDataSetChanged()
+                                                }
+                                                else{
+                                                    if (data.memoBKN.isNotEmpty()){
+                                                        listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN (Pelaksana)", "", data.memoBKN, 2))
+                                                        adapter?.notifyDataSetChanged()
+                                                    }
+                                                    else{
+                                                        listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN (Pelaksana)", "", "", 3))
+                                                        adapter?.notifyDataSetChanged()
+                                                    }
+                                                }
                                             }
                                             else{
-                                                listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN", false))
-                                                adapter?.notifyDataSetChanged()
-                                                textStatus.visibility = View.GONE
+                                                if (data.memoBagianKepegawaian.isNotEmpty()){
+                                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Pelaksana)", "", data.memoBagianKepegawaian ,2))
+                                                    adapter?.notifyDataSetChanged()
+                                                }
+                                                else{
+                                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Pelaksana)", "", "", 3))
+                                                    adapter?.notifyDataSetChanged()
+                                                }
                                             }
                                         }
                                         else{
-                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian", false))
-                                            adapter?.notifyDataSetChanged()
-                                            textStatus.visibility = View.GONE
+                                            if (data.memoBagianUmum.isNotEmpty()){
+                                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Pelaksana)", "", data.memoBagianUmum, 2))
+                                                adapter?.notifyDataSetChanged()
+                                            }
+                                            else{
+                                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Pelaksana)", "", "", 3))
+                                                adapter?.notifyDataSetChanged()
+                                            }
                                         }
                                     }
                                     else{
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum", false))
-                                        adapter?.notifyDataSetChanged()
-                                        textStatus.visibility = View.GONE
+                                        if (data.memoRektor.isNotEmpty()){
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", "", data.memoRektor, 2))
+                                            adapter?.notifyDataSetChanged()
+                                        }
+                                        else{
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", "", "", 3))
+                                            adapter?.notifyDataSetChanged()
+                                        }
                                     }
                                 }
                                 else{
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", false))
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas (Pelaksana)", "", "", 3))
+                                    adapter?.notifyDataSetChanged()
                                 }
                             }
                             else{
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas", false))
-                                adapter?.notifyDataSetChanged()
-                                textStatus.visibility = View.GONE
+                                if (data.memoAdminFakultas.isNotEmpty()){
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Pelaksana)", "", data.memoAdminFakultas, 2))
+                                    adapter?.notifyDataSetChanged()
+                                }
+                                else{
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Pelaksana)", "", "", 3))
+                                    adapter?.notifyDataSetChanged()
+                                }
                             }
-                        }
-                        else{
-                            listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas", false))
-                            adapter?.notifyDataSetChanged()
-                            textStatus.visibility = View.GONE
                         }
                     }
                 }
+
+                if (listProgress.size == 0){
+                    textStatus.visibility = View.VISIBLE
+                }
                 else{
-                    getDataStruktural(dataUser)
+                    textStatus.visibility = View.GONE
                 }
             }
         }
 
         FirebaseDatabase.getInstance()
             .getReference("UsulanPelaksana")
-            .child(dataUser.nip)
+            .orderByChild("nip")
+            .equalTo(dataUser.nip)
             .addListenerForSingleValueEvent(valueEventListener)
     }
 
-    @Suppress("DEPRECATION")
-    @SuppressLint("SetTextI18n")
     private fun getDataStruktural(dataUser: ModelUser){
         progress.visibility = View.VISIBLE
 
         val valueEventListener = object : ValueEventListener {
             override fun onCancelled(result: DatabaseError) {
                 progress.visibility = View.GONE
-                textStatus.text = "Anda belum memiliki daftar pengajuan berkas"
+
+                if (listProgress.size == 0){
+                    textStatus.visibility = View.VISIBLE
+                }
+                else{
+                    textStatus.visibility = View.GONE
+                }
             }
 
             override fun onDataChange(result: DataSnapshot) {
                 progress.visibility = View.GONE
 
                 if (result.exists()) {
-                    val data = result.getValue(ModelUsulanStruktural::class.java)
-                    if (data != null){
-                        if (data.statusPengajuan){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas", true))
-                            adapter?.notifyDataSetChanged()
-                            textStatus.visibility = View.GONE
-                            if (data.statusAdminFakultas){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas", true))
+                    for (snapshot in result.children) {
+                        val data = snapshot.getValue(ModelUsulanStruktural::class.java)
+                        if (data != null && data.nip == dataUser.nip){
+                            if (data.statusPengajuan){
+                                listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Struktural)", "", "", 1))
                                 adapter?.notifyDataSetChanged()
-                                textStatus.visibility = View.GONE
-                                if (data.statusRektor){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", true))
+
+                                if (data.statusAdminFakultas){
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas (Struktural)", data.disposisiAdminFakultas, "", 1))
                                     adapter?.notifyDataSetChanged()
-                                    textStatus.visibility = View.GONE
-                                    if (data.statusBagianUmum){
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum", true))
+                                    if (data.statusRektor){
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", data.disposisiRektor, "", 1))
                                         adapter?.notifyDataSetChanged()
-                                        textStatus.visibility = View.GONE
-                                        if (data.statusBagianKepegawaian){
-                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian", true))
+                                        if (data.statusBagianUmum){
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Struktural)", data.disposisiBagianUmum, "", 1))
                                             adapter?.notifyDataSetChanged()
-                                            textStatus.visibility = View.GONE
-                                            if (data.statusBKN){
-                                                listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN", true))
+                                            if (data.statusBagianKepegawaian){
+                                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Struktural)", data.disposisiBagianKepegawaian, "", 1))
                                                 adapter?.notifyDataSetChanged()
-                                                textStatus.visibility = View.GONE
+                                                if (data.statusBKN){
+                                                    listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN (Struktural)", data.disposisiBKN, "", 1))
+                                                    adapter?.notifyDataSetChanged()
+                                                }
+                                                else{
+                                                    if (data.memoBKN.isNotEmpty()){
+                                                        listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN (Struktural)", "", data.memoBKN, 2))
+                                                        adapter?.notifyDataSetChanged()
+                                                    }
+                                                    else{
+                                                        listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN (Struktural)", "", "", 3))
+                                                        adapter?.notifyDataSetChanged()
+                                                    }
+                                                }
                                             }
                                             else{
-                                                listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN", false))
-                                                adapter?.notifyDataSetChanged()
-                                                textStatus.visibility = View.GONE
+                                                if (data.memoBagianKepegawaian.isNotEmpty()){
+                                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Struktural)", "", data.memoBagianKepegawaian ,2))
+                                                    adapter?.notifyDataSetChanged()
+                                                }
+                                                else{
+                                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Struktural)", "", "", 3))
+                                                    adapter?.notifyDataSetChanged()
+                                                }
                                             }
                                         }
                                         else{
-                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian", false))
-                                            adapter?.notifyDataSetChanged()
-                                            textStatus.visibility = View.GONE
+                                            if (data.memoBagianUmum.isNotEmpty()){
+                                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Struktural)", "", data.memoBagianUmum, 2))
+                                                adapter?.notifyDataSetChanged()
+                                            }
+                                            else{
+                                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Struktural)", "", "", 3))
+                                                adapter?.notifyDataSetChanged()
+                                            }
                                         }
                                     }
                                     else{
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum", false))
-                                        adapter?.notifyDataSetChanged()
-                                        textStatus.visibility = View.GONE
+                                        if (data.memoRektor.isNotEmpty()){
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", "", data.memoRektor, 2))
+                                            adapter?.notifyDataSetChanged()
+                                        }
+                                        else{
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", "", "", 3))
+                                            adapter?.notifyDataSetChanged()
+                                        }
                                     }
                                 }
                                 else{
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", false))
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas (Struktural)", "", "", 3))
+                                    adapter?.notifyDataSetChanged()
                                 }
                             }
                             else{
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Admin Fakultas", false))
-                                adapter?.notifyDataSetChanged()
-                                textStatus.visibility = View.GONE
+                                if (data.memoAdminFakultas.isNotEmpty()){
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Struktural)", "", data.memoAdminFakultas, 2))
+                                    adapter?.notifyDataSetChanged()
+                                }
+                                else{
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Struktural)", "", "", 3))
+                                    adapter?.notifyDataSetChanged()
+                                }
                             }
-                        }
-                        else{
-                            listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas", false))
-                            adapter?.notifyDataSetChanged()
-                            textStatus.visibility = View.GONE
                         }
                     }
                 }
+
+                if (listProgress.size == 0){
+                    textStatus.visibility = View.VISIBLE
+                }
                 else{
-                    textStatus.text = "Anda belum memiliki daftar pengajuan berkas"
+                    textStatus.visibility = View.GONE
                 }
             }
         }
 
         FirebaseDatabase.getInstance()
             .getReference("UsulanStruktural")
-            .child(dataUser.nip)
+            .orderByChild("nip")
+            .equalTo(dataUser.nip)
             .addListenerForSingleValueEvent(valueEventListener)
     }
 }

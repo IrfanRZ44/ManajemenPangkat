@@ -22,5 +22,6 @@ data class ModelUser(
     var tglSKPangkat: String = "",
     var tglSKPangkatOld: String = "",
     var tmtPangkat: String = "",
-    var tmtPangkatOld: String = ""
+    var tmtPangkatOld: String = "",
+    var tglPengajuan: String = ""
     ) : Parcelable

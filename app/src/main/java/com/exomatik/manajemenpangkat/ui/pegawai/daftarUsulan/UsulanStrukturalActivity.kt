@@ -25,14 +25,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_usulan_struktural.*
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnBack
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnIjazah
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKCPNS
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKJabatanTerakhir
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKP
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnSKPNS
-import kotlinx.android.synthetic.main.activity_usulan_struktural.btnTranskrip
-import kotlinx.android.synthetic.main.activity_usulan_struktural.progress
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -44,6 +36,13 @@ class UsulanStrukturalActivity : AppCompatActivity() {
     private var mStorageReference: StorageReference? = null
     private var mDatabaseReference: DatabaseReference? = null
     private lateinit var requestFile: String
+
+    @SuppressLint("SimpleDateFormat")
+    private val tglPengajuan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-M-yyyy"))
+    } else {
+        SimpleDateFormat("dd-M-yyyy").format(Date())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,25 +75,25 @@ class UsulanStrukturalActivity : AppCompatActivity() {
             ){
                 val dataUser = savedData.getDataUser()
                 if (dataUser != null){
-                    val tglPengajuan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-M-yyyy"))
-                    } else {
-                        SimpleDateFormat("dd-M-yyyy").format(Date())
-                    }
-
                     val awal = intent.getStringExtra("awal")
                     val usul = intent.getStringExtra("usul")
 
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusPengajuan")?.setValue(true)
-                    mDatabaseReference?.child(dataUser.nip)?.child("tglPengajuan")?.setValue(tglPengajuan)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusAdminFakultas")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusRektor")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusBagianUmum")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusBagianKepegawaian")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("statusBKN")?.setValue(false)
-                    mDatabaseReference?.child(dataUser.nip)?.child("pangkatAwal")?.setValue(awal)
-                    mDatabaseReference?.child(dataUser.nip)?.child("pangkatUsulan")?.setValue(usul)
-                    mDatabaseReference?.child(dataUser.nip)?.child("nip")?.setValue(dataUser.nip)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue(true)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("tglPengajuan")?.setValue(tglPengajuan)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("statusAdminFakultas")?.setValue(false)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("statusRektor")?.setValue(false)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("statusBagianUmum")?.setValue(false)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("statusBagianKepegawaian")?.setValue(false)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("statusBKN")?.setValue(false)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("pangkatAwal")?.setValue(awal)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("pangkatUsulan")?.setValue(usul)
+                    mDatabaseReference?.child("${dataUser.nip}__$tglPengajuan")?.child("nip")?.setValue(dataUser.nip)
+                    FirebaseDatabase.getInstance().getReference("Users").child(dataUser.nip).child("tglPengajuan").setValue(tglPengajuan)
+
+                    val tempSavedData = savedData.getDataUser()
+                    tempSavedData?.tglPengajuan = tglPengajuan
+                    savedData.setDataObject(tempSavedData, "Users")
+
                     val intent = Intent(this, PengajuanSelesaiActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -223,7 +222,7 @@ class UsulanStrukturalActivity : AppCompatActivity() {
 
         FirebaseDatabase.getInstance()
             .getReference("UsulanStruktural")
-            .child(dataUser.nip)
+            .child("${dataUser.nip}__$tglPengajuan")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 
@@ -253,7 +252,7 @@ class UsulanStrukturalActivity : AppCompatActivity() {
 
     private fun uploadFile(data: Uri) {
         progress.visibility = View.VISIBLE
-        val sRef = mStorageReference?.child("${savedData.getDataUser()?.nip}/$requestFile" + ".pdf")
+        val sRef = mStorageReference?.child("${savedData.getDataUser()?.nip}__$tglPengajuan/$requestFile" + ".pdf")
         sRef?.putFile(data)
             ?.addOnSuccessListener { taskSnapshot ->
                 savedData.getDataUser()?.nip?.let { getUrlFile(taskSnapshot, it) }
@@ -270,7 +269,7 @@ class UsulanStrukturalActivity : AppCompatActivity() {
             Toast.makeText(this, "File berhasil di upload", Toast.LENGTH_LONG).show()
             changeButtonStyle()
             progress.visibility = View.GONE
-            mDatabaseReference?.child(nip)?.child(requestFile)?.setValue(it.toString())
+            mDatabaseReference?.child("${nip}__$tglPengajuan")?.child(requestFile)?.setValue(it.toString())
         }
 
         val onFailureListener = OnFailureListener {

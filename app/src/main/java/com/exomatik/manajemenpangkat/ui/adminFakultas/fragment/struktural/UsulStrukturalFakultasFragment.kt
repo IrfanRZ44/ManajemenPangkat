@@ -1,12 +1,12 @@
 package com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.struktural
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,7 +55,10 @@ class UsulStrukturalFakultasFragment : Fragment() {
     }
 
     private fun onClickItem(item: ModelUsulanStruktural) {
-        Toast.makeText(context, item.nip, Toast.LENGTH_SHORT).show()
+        val intent = Intent(activity, DetailStrukturalFakultasActivity::class.java)
+        intent.putExtra("dataPengajuan", item)
+        activity?.startActivity(intent)
+        activity?.finish()
     }
 
     private fun getDataPegawai(nip: String, textNama: AppCompatTextView) {

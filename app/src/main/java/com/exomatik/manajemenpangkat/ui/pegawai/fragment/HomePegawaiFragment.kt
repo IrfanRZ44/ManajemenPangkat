@@ -2,6 +2,7 @@ package com.exomatik.manajemenpangkat.ui.pegawai.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,12 +23,21 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_usul_kp.*
 import kotlinx.android.synthetic.main.fragment_home_pegawai.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class HomePegawaiFragment : Fragment() {
     private lateinit var savedData : DataSave
     private lateinit var v : View
+    @SuppressLint("SimpleDateFormat")
+    private val tglPengajuan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-M-yyyy"))
+    } else {
+        SimpleDateFormat("dd-M-yyyy").format(Date())
+    }
 
     override fun onCreateView(paramLayoutInflater: LayoutInflater, paramViewGroup: ViewGroup?, paramBundle: Bundle?): View? {
         v = paramLayoutInflater.inflate(R.layout.fragment_home_pegawai, paramViewGroup, false)
@@ -89,21 +99,23 @@ class HomePegawaiFragment : Fragment() {
                 v.progress.visibility = View.GONE
 
                 if (result.exists()) {
-                    val data = result.getValue(ModelUsulanPelaksana::class.java)
+                    for (snapshot in result.children) {
+                        val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
 
-                    if (data != null && data.statusPengajuan){
-                        Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
-                    }
-                    else{
-                        if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty()){
-                            val intent = Intent(activity, UsulanPelaksanaActivity::class.java)
-                            intent.putExtra("awal", data.pangkatAwal)
-                            intent.putExtra("usul", data.pangkatUsulan)
-                            activity?.startActivity(intent)
-                            activity?.finish()
+                        if (data != null && data.statusPengajuan){
+                            Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
                         }
                         else{
-                            checkUsulanStruktural(dataUser)
+                            if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
+                                val intent = Intent(activity, UsulanPelaksanaActivity::class.java)
+                                intent.putExtra("awal", data.pangkatAwal)
+                                intent.putExtra("usul", data.pangkatUsulan)
+                                activity?.startActivity(intent)
+                                activity?.finish()
+                            }
+                            else{
+                                checkUsulanStruktural(dataUser)
+                            }
                         }
                     }
                 }
@@ -115,7 +127,8 @@ class HomePegawaiFragment : Fragment() {
 
         FirebaseDatabase.getInstance()
             .getReference("UsulanPelaksana")
-            .child(dataUser.nip)
+            .orderByChild("nip")
+            .equalTo(dataUser.nip)
             .addListenerForSingleValueEvent(valueEventListener)
     }
 
@@ -135,23 +148,25 @@ class HomePegawaiFragment : Fragment() {
                 v.progress.visibility = View.GONE
 
                 if (result.exists()) {
-                    val data = result.getValue(ModelUsulanPelaksana::class.java)
+                    for (snapshot in result.children) {
+                        val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
 
-                    if (data != null && data.statusPengajuan){
-                        Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
-                    }
-                    else{
-                        if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty()){
-                            val intent = Intent(activity, UsulanStrukturalActivity::class.java)
-                            intent.putExtra("awal", data.pangkatAwal)
-                            intent.putExtra("usul", data.pangkatUsulan)
-                            activity?.startActivity(intent)
-                            activity?.finish()
+                        if (data != null && data.statusPengajuan){
+                            Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
                         }
                         else{
-                            val intent = Intent(activity, UsulKPActivity::class.java)
-                            activity?.startActivity(intent)
-                            activity?.finish()
+                            if (data != null && data.pangkatAwal.isNotEmpty() && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
+                                val intent = Intent(activity, UsulanStrukturalActivity::class.java)
+                                intent.putExtra("awal", data.pangkatAwal)
+                                intent.putExtra("usul", data.pangkatUsulan)
+                                activity?.startActivity(intent)
+                                activity?.finish()
+                            }
+                            else{
+                                val intent = Intent(activity, UsulKPActivity::class.java)
+                                activity?.startActivity(intent)
+                                activity?.finish()
+                            }
                         }
                     }
                 }
@@ -165,7 +180,8 @@ class HomePegawaiFragment : Fragment() {
 
         FirebaseDatabase.getInstance()
             .getReference("UsulanStruktural")
-            .child(dataUser.nip)
+            .orderByChild("nip")
+            .equalTo(dataUser.nip)
             .addListenerForSingleValueEvent(valueEventListener)
     }
 }
