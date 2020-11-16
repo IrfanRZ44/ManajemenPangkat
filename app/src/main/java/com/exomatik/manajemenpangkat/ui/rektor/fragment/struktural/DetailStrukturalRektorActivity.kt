@@ -251,7 +251,7 @@ class DetailStrukturalRektorActivity : AppCompatActivity(),
             SimpleDateFormat("dd-M-yyyy").format(Date())
         }
 
-        Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "disposisi berhasil di upload", Toast.LENGTH_LONG).show()
         progress.visibility = View.GONE
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiRektor")?.setValue(urlFile)
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BagianUmum")

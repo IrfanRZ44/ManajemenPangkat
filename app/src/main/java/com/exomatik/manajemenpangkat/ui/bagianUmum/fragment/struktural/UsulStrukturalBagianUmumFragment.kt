@@ -121,7 +121,7 @@ class UsulStrukturalBagianUmumFragment : Fragment() {
 
                     if (listPengajuan.size == 0){
                         v.textStatus.visibility = View.VISIBLE
-                        v.textStatus.text = "Belum ada nota usulan"
+                        v.textStatus.text = "Belum ada disposisi"
                     }
                     else{
                         v.textStatus.visibility = View.GONE
@@ -129,7 +129,7 @@ class UsulStrukturalBagianUmumFragment : Fragment() {
                     }
                 }
                 else{
-                    v.textStatus.text = "Belum ada nota usulan"
+                    v.textStatus.text = "Belum ada disposisi"
                     v.textStatus.visibility = View.VISIBLE
                 }
             }

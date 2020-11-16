@@ -19,7 +19,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
-import com.exomatik.manajemenpangkat.ui.bagianUmum.fragment.MainBagianUmumActivity
 import com.exomatik.manajemenpangkat.ui.bkn.fragment.MainBKNActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
@@ -68,7 +67,7 @@ class DetailPelaksanaBKNActivity : AppCompatActivity(),
     @SuppressLint("SimpleDateFormat")
     private fun onClick() {
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainBagianUmumActivity::class.java)
+            val intent = Intent(this, MainBKNActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -252,7 +251,7 @@ class DetailPelaksanaBKNActivity : AppCompatActivity(),
             SimpleDateFormat("dd-M-yyyy").format(Date())
         }
 
-        Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "disposisi berhasil di upload", Toast.LENGTH_LONG).show()
         progress.visibility = View.GONE
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiBKN")?.setValue(urlFile)
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BKN")

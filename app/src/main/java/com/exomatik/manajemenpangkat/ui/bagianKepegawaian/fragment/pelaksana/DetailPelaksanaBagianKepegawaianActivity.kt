@@ -19,7 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
-import com.exomatik.manajemenpangkat.ui.bkn.fragment.MainBKNActivity
+import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.MainBagianKepegawaianActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
 import com.google.android.gms.tasks.OnFailureListener
@@ -29,28 +29,23 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
-import kotlinx.android.synthetic.main.activity_detail_pelaksana_bagian_umum.*
+import kotlinx.android.synthetic.main.activity_detail_pelaksana_bagian_kepegawaian.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
-    RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?>{
+class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity() {
     private lateinit var savedData : DataSave
     private val getPDFCode = 86
     private var mStorageReference: StorageReference? = null
     private var mDatabaseReference: DatabaseReference? = null
     private var dataPengajuan: ModelUsulanPelaksana? = null
-    private var rfabHelper: RapidFloatingActionHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_detail_pelaksana_bagian_umum)
+        setContentView(R.layout.activity_detail_pelaksana_bagian_kepegawaian)
         myCodeHere()
     }
 
@@ -60,20 +55,134 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
 
         mStorageReference = FirebaseStorage.getInstance().getReference("UsulanPelaksana")
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("UsulanPelaksana")
-        setFAB()
         onClick()
+        onClickDecline()
+
+        val data = intent.getParcelableExtra<ModelUsulanPelaksana>("dataPengajuan")
+        if (data != null){
+            setData(data)
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    @SuppressLint("SetTextI18n")
+    private fun setData(data: ModelUsulanPelaksana){
+        if (data.Karpeg.isEmpty()){
+            btnKarpeg.isEnabled = false
+            btnKarpegDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.SKCpns.isEmpty()){
+            btnSKCPNS.isEnabled = false
+            btnSKCPNSDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.SKPns.isEmpty()){
+            btnSKPNS.isEnabled = false
+            btnSKPNSDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.SKPangkatTerakhir.isEmpty()){
+            btnSKPangkatTerakhir.isEnabled = false
+            btnSKPangkatTerakhirDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.SKJabatanTerakhir.isEmpty()){
+            btnSKJabatanTerakhir.isEnabled = false
+            btnSKJabatanTerakhirDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.PAKTerakhir.isEmpty()){
+            btnPAKTerakhir.isEnabled = false
+            btnPAKTerakhirDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.FungsionalTerakhir.isEmpty()){
+            btnFungsionalTerakhir.isEnabled = false
+            btnFungsionalTerakhirDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.SKP.isEmpty()){
+            btnSKP.isEnabled = false
+            btnSKPDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.Ijazah.isEmpty()){
+            btnIjazah.isEnabled = false
+            btnIjazahDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
+
+        if (data.Transkrip.isEmpty()){
+            btnTranskrip.isEnabled = false
+            btnTranskripDecline.isEnabled = false
+
+            btnSend.text = "Tolak Berkas"
+            btnSend.setTextColor(resources.getColor(R.color.red1))
+            val img = resources.getDrawable(R.drawable.ic_close_red)
+            btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+        }
     }
 
     @SuppressLint("SimpleDateFormat")
     private fun onClick() {
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainBKNActivity::class.java)
+            val intent = Intent(this, MainBagianKepegawaianActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        btnOpenNota.setOnClickListener {
-            dataPengajuan?.disposisiBagianUmum?.let { it1 -> openPdf(it1) }
+        btnSend.setOnClickListener {
+            if (btnSend.text == "Kirim Nota"){
+                getPDF()
+            }
+            else{
+                showDialogDecline(this)
+            }
         }
 
         btnKarpeg.setOnClickListener {
@@ -117,8 +226,182 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    @Suppress("DEPRECATION")
+    private fun onClickDecline(){
+        btnKarpegDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.Karpeg = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("Karpeg")?.setValue("")
+
+                btnKarpegDecline.isEnabled = false
+                btnKarpeg.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnSKCPNSDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.SKCpns = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("SKCpns")?.setValue("")
+
+                btnSKCPNSDecline.isEnabled = false
+                btnSKCPNS.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnSKPNSDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.SKPns = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("SKPns")?.setValue("")
+
+                btnSKPNSDecline.isEnabled = false
+                btnSKPNS.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnSKPangkatTerakhirDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.SKPangkatTerakhir = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("SKPangkatTerakhir")?.setValue("")
+
+                btnSKPangkatTerakhirDecline.isEnabled = false
+                btnSKPangkatTerakhir.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnSKJabatanTerakhirDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.SKJabatanTerakhir = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("SKJabatanTerakhir")?.setValue("")
+
+                btnSKJabatanTerakhirDecline.isEnabled = false
+                btnSKJabatanTerakhir.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnPAKTerakhirDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.PAKTerakhir = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("PAKTerakhir")?.setValue("")
+
+                btnPAKTerakhirDecline.isEnabled = false
+                btnPAKTerakhir.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnFungsionalTerakhirDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.FungsionalTerakhir = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("FungsionalTerakhir")?.setValue("")
+
+                btnFungsionalTerakhirDecline.isEnabled = false
+                btnFungsionalTerakhir.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnSKPDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.SKP = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("SKP")?.setValue("")
+
+                btnSKPDecline.isEnabled = false
+                btnSKP.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnIjazahDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.Ijazah = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("Ijazah")?.setValue("")
+
+                btnIjazahDecline.isEnabled = false
+                btnIjazah.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+
+        btnTranskripDecline.setOnClickListener {
+            val nip = dataPengajuan?.nip
+
+            if (nip != null){
+                dataPengajuan?.Transkrip = ""
+                mDatabaseReference?.child("${nip}__${dataPengajuan?.tglPengajuan}")?.child("Transkrip")?.setValue("")
+
+                btnTranskripDecline.isEnabled = false
+                btnTranskrip.isEnabled = false
+
+                btnSend.text = "Tolak Berkas"
+                btnSend.setTextColor(resources.getColor(R.color.red1))
+                val img = resources.getDrawable(R.drawable.ic_close_red)
+                btnSend.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+            }
+        }
+    }
+
     override fun onBackPressed() {
-        val intent = Intent(this, MainBKNActivity::class.java)
+        val intent = Intent(this, MainBagianKepegawaianActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -155,7 +438,7 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
 
     private fun uploadFile(data: Uri) {
         progress.visibility = View.VISIBLE
-        val sRef = mStorageReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}/disposisiBKN" + ".pdf")
+        val sRef = mStorageReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}/disposisiBagianKepegawaian" + ".pdf")
         sRef?.putFile(data)
             ?.addOnSuccessListener { taskSnapshot ->
                 dataPengajuan?.let { getUrlFile(taskSnapshot, it.nip, it.tglPengajuan) }
@@ -231,14 +514,14 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
         mDatabaseReference?.child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
             ?.child("catatanDitolak")?.setValue(note)
 
-        FirebaseDatabase.getInstance().getReference("DataBKN")
+        FirebaseDatabase.getInstance().getReference("DataBagianKepegawaian")
             .child("UsulanPelaksana")
             .child("${dataPengajuan?.nip}__${dataPengajuan?.tglPengajuan}")
             .setValue(dataPengajuan)
 
         Toast.makeText(context, "Pengajuan berhasil ditolak", Toast.LENGTH_LONG).show()
 
-        val intent = Intent(this, MainBKNActivity::class.java)
+        val intent = Intent(this, MainBagianKepegawaianActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -251,78 +534,20 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
             SimpleDateFormat("dd-M-yyyy").format(Date())
         }
 
-        Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "disposisi berhasil di upload", Toast.LENGTH_LONG).show()
         progress.visibility = View.GONE
-        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiBKN")?.setValue(urlFile)
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiBagianKepegawaian")?.setValue(urlFile)
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BKN")
-        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglBKN")?.setValue(tglBKN)
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglBagianKepegawaian")?.setValue(tglBKN)
         dataPengajuan?.disposisiBKN = urlFile
         dataPengajuan?.tglBKN = tglBKN
-        FirebaseDatabase.getInstance().getReference("DataBKN")
+        FirebaseDatabase.getInstance().getReference("DataBagianKepegawaian")
             .child("UsulanPelaksana")
             .child("${dataPengajuan?.nip}__${tglBKN}")
             .setValue(dataPengajuan)
 
-        val intent = Intent(this, MainBKNActivity::class.java)
+        val intent = Intent(this, MainBagianKepegawaianActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setFAB(){
-        val rfaContent = RapidFloatingActionContentLabelList(this)
-
-        val items: MutableList<RFACLabelItem<*>> = ArrayList()
-        items.add(
-            RFACLabelItem<Int>()
-                .setLabel("Tolak")
-                .setResId(R.drawable.ic_close_white)
-                .setIconNormalColor(resources.getColor(R.color.colorPrimaryDark))
-                .setIconPressedColor(resources.getColor(R.color.colorPrimary))
-                .setLabelColor(resources.getColor(R.color.white))
-                .setLabelBackgroundDrawable(resources.getDrawable(R.drawable.gradient_green))
-                .setWrapper(2)
-        )
-        items.add(
-            RFACLabelItem<Int>()
-                .setLabel("Disposisi")
-                .setResId(R.drawable.ic_true_white)
-                .setIconNormalColor(resources.getColor(R.color.colorPrimaryDark))
-                .setIconPressedColor(resources.getColor(R.color.colorPrimary))
-                .setLabelColor(resources.getColor(R.color.white))
-                .setLabelBackgroundDrawable(resources.getDrawable(R.drawable.gradient_green))
-                .setWrapper(0)
-        )
-
-        rfaContent.items = items
-
-        rfabHelper = RapidFloatingActionHelper(
-            this,
-            fabLayout,
-            fabButton,
-            rfaContent
-        ).build()
-
-        rfaContent.setOnRapidFloatingActionContentLabelListListener(this)
-    }
-
-    override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<Any?>?) {
-        if (position == 0){
-            showDialogDecline(this)
-        }
-        else{
-            getPDF()
-        }
-        rfabHelper?.toggleContent()
-    }
-
-    override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<Any?>?) {
-        if (position == 0){
-            showDialogDecline(this)
-        }
-        else{
-            getPDF()
-        }
-        rfabHelper?.toggleContent()
     }
 }

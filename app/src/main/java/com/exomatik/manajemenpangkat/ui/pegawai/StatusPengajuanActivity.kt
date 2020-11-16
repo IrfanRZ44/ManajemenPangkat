@@ -69,6 +69,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status1.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus2.text = ""
                                     textStatus2.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status2.setImageResource(R.color.gray1)
                                 }
@@ -86,6 +87,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status2.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus3.text = ""
                                     textStatus3.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status3.setImageResource(R.color.gray1)
                                 }
@@ -107,6 +109,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status3.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus4.text = ""
                                     textStatus4.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status4.setImageResource(R.color.gray1)
                                 }
@@ -132,6 +135,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status4.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus5.text = ""
                                     textStatus5.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status5.setImageResource(R.color.gray1)
                                 }
@@ -161,6 +165,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status5.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus6.text = ""
                                     textStatus6.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status6.setImageResource(R.color.gray1)
                                 }
@@ -212,6 +217,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status1.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus2.text = ""
                                     textStatus2.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status2.setImageResource(R.color.gray1)
                                 }
@@ -229,6 +235,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status2.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus3.text = ""
                                     textStatus3.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status3.setImageResource(R.color.gray1)
                                 }
@@ -250,6 +257,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status3.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus4.text = ""
                                     textStatus4.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status4.setImageResource(R.color.gray1)
                                 }
@@ -275,6 +283,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status4.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus5.text = ""
                                     textStatus5.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status5.setImageResource(R.color.gray1)
                                 }
@@ -304,6 +313,7 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                 status5.setImageResource(R.color.blue4)
 
                                 if (data.statusDitolak){
+                                    textStatus6.text = ""
                                     textStatus6.background = resources.getDrawable(R.drawable.ic_close_red)
                                     status6.setImageResource(R.color.gray1)
                                 }
