@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.bagianUmum
+package com.exomatik.manajemenpangkat.ui.bkn.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,16 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.ui.auth.SplashActivity
-import com.exomatik.manajemenpangkat.ui.bagianUmum.fragment.pelaksana.UsulPelaksanaBagianUmumFragment
-import com.exomatik.manajemenpangkat.ui.bagianUmum.fragment.struktural.UsulStrukturalBagianUmumFragment
+import com.exomatik.manajemenpangkat.ui.bkn.RiwayatBKNActivity
+import com.exomatik.manajemenpangkat.ui.bkn.fragment.pelaksana.UsulPelaksanaBKNFragment
+import com.exomatik.manajemenpangkat.ui.bkn.fragment.struktural.UsulStrukturalBKNFragment
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.SectionsPagerAdapter
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
-import kotlinx.android.synthetic.main.activity_main_bagian_umum.*
+import kotlinx.android.synthetic.main.activity_main_bkn.*
 
-class MainBagianUmumActivity : AppCompatActivity(),
+class MainBKNActivity : AppCompatActivity(),
     RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?> {
     private lateinit var savedData : DataSave
     private var exit = false
@@ -26,7 +27,7 @@ class MainBagianUmumActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main_bagian_umum)
+        setContentView(R.layout.activity_main_bkn)
 
         savedData = DataSave(this)
 
@@ -36,8 +37,8 @@ class MainBagianUmumActivity : AppCompatActivity(),
 
     private fun myCodeHere(){
         val adapter = SectionsPagerAdapter(supportFragmentManager)
-        adapter.addFragment(UsulPelaksanaBagianUmumFragment(), "Usulan Pelaksana")
-        adapter.addFragment(UsulStrukturalBagianUmumFragment(), "Usulan Struktural")
+        adapter.addFragment(UsulPelaksanaBKNFragment(), "Usulan Pelaksana")
+        adapter.addFragment(UsulStrukturalBKNFragment(), "Usulan Struktural")
         view_pagerr.adapter = adapter
         tabs.setupWithViewPager(view_pagerr)
     }
@@ -93,7 +94,7 @@ class MainBagianUmumActivity : AppCompatActivity(),
 
     override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<Any?>?) {
         if (position == 0){
-            val intent = Intent(this, RiwayatBagianUmumActivity::class.java)
+            val intent = Intent(this, RiwayatBKNActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -108,7 +109,7 @@ class MainBagianUmumActivity : AppCompatActivity(),
 
     override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<Any?>?) {
         if (position == 0){
-            val intent = Intent(this, RiwayatBagianUmumActivity::class.java)
+            val intent = Intent(this, RiwayatBKNActivity::class.java)
             startActivity(intent)
             finish()
         }

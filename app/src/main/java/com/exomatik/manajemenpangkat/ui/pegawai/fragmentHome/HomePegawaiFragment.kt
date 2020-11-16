@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.pegawai.fragment
+package com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -19,6 +19,7 @@ import com.exomatik.manajemenpangkat.ui.pegawai.StatusPengajuanActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulKPActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanPelaksanaActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.daftarUsulan.UsulanStrukturalActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.fragmentArsip.ArsipPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -83,6 +84,12 @@ class HomePegawaiFragment : Fragment() {
         v.btnUsulan.setOnClickListener {
             val dataUser = savedData.getDataUser()
             dataUser?.let { it1 -> checkUsulanPelaksana(it1) }
+        }
+
+        v.btnArsip.setOnClickListener {
+            val intent = Intent(activity, ArsipPegawaiActivity::class.java)
+            activity?.startActivity(intent)
+            activity?.finish()
         }
     }
 

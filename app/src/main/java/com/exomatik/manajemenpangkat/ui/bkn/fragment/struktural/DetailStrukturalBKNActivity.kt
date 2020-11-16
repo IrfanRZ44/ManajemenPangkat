@@ -19,7 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
-import com.exomatik.manajemenpangkat.ui.bkn.MainBKNActivity
+import com.exomatik.manajemenpangkat.ui.bkn.fragment.MainBKNActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
 import com.google.android.gms.tasks.OnFailureListener

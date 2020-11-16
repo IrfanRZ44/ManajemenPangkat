@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.exomatik.manajemenpangkat.ui.bagianKepegawaian.MainBagianKepegawaianActivity">
+    tools:context="com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.MainBagianKepegawaianActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

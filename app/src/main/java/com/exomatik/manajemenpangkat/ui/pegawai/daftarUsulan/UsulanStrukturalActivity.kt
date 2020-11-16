@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
-import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener

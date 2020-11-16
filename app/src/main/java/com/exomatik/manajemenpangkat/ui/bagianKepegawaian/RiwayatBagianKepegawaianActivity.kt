@@ -10,6 +10,7 @@ import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelNotifikasiPegawai
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
 import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
+import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.MainBagianKepegawaianActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

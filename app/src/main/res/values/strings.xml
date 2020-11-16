@@ -242,4 +242,5 @@
     <string name="bagian_umum">Bagian Umum</string>
     <string name="bkn">BKN</string>
     <string name="bagian_kepegawaian">Bagian Kepegawaian</string>
+    <string name="simpan_data">Simpan Data</string>
 </resources>

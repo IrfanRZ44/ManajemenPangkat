@@ -1,387 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/CustomStyle"
-    android:background="@color/white"
-    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.BiodataActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.BiodataActivity"
+    >
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/h2">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="@dimen/h2"
-            android:background="@color/white"
-            >
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back_black"
-                    android:background="@drawable/btn_circle_gray"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="@dimen/h3"
-                    android:id="@+id/btnBack"
-                    />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:text="@string/biodata"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_h3"
-                    android:textStyle="bold"
-                    tools:ignore="RelativeOverlap" />
-            </RelativeLayout>
-        </androidx.appcompat.widget.Toolbar>
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/h3"
+                android:background="@drawable/btn_circle_gray"
+                android:src="@drawable/ic_back_black" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/biodata"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h3"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical"
+        android:padding="@dimen/h5">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/h5"
-            android:orientation="vertical"
-            android:layout_below="@id/toolbar"
-            >
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/h2"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
+            android:layout_height="@dimen/margin_large"
+            android:layout_marginTop="@dimen/h2"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/nip"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etNip"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/nip"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etNip"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
+                    android:focusable="false"
+                    android:maxLines="1"
                     android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/nama"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etNama"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/tempat_dan_tgl_lahir"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etTempatLahir"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/jenis_kelamin"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etJK"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/pendidikan_terakhir"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etPendidikanLast"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/pangkat_gol"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etPangkat"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/tmt_pangkat"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etTMTPangkat"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/no_sk_pangkat"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etNoSKPangkat"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_large"
-                android:orientation="horizontal"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/tanggal_sk_pangkat"
-                    android:textSize="@dimen/text_h2"
-                    android:textColor="@color/black"
-                    />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etTglSkPangkat"
-                    style="@style/customEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:padding="0dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textStandardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:focusable="false"
-                        android:padding="0dp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/h5"
-                android:background="@android:color/transparent"
-                />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <include layout="@layout/progress_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progress"
-            android:visibility="gone"
-            android:layout_centerInParent="true"
-            />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal">
 
-    </RelativeLayout>
-</androidx.core.widget.NestedScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/nama"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etNama"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal"
+
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/tempat_dan_tgl_lahir"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etTempatLahir"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/jenis_kelamin"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etJK"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/pendidikan_terakhir"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPendidikanLast"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/pangkat_gol"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPangkat"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/tmt_pangkat"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etTMTPangkat"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/no_sk_pangkat"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etNoSKPangkat"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_large"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/tanggal_sk_pangkat"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_h2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etTglSkPangkat"
+                style="@style/customEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.65"
+                android:padding="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/textStandardWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/h5"
+            android:background="@android:color/transparent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/progress_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+</RelativeLayout>

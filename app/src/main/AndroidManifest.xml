@@ -34,8 +34,14 @@
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome.MainPegawaiActivity"
             android:label="@string/halaman_utama"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"/>
+
+        <activity
+            android:name="com.exomatik.manajemenpangkat.ui.pegawai.fragmentArsip.ArsipPegawaiActivity"
+            android:label="@string/arsip"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
@@ -94,7 +100,7 @@
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.adminFakultas.MainFakultasActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.MainFakultasActivity"
             android:label="@string/admin_fakultas"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
@@ -106,19 +112,19 @@
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.bagianUmum.MainBagianUmumActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.bagianUmum.fragment.MainBagianUmumActivity"
             android:label="@string/bagian_umum"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.bagianKepegawaian.MainBagianKepegawaianActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.MainBagianKepegawaianActivity"
             android:label="@string/bagian_kepegawaian"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>
 
         <activity
-            android:name="com.exomatik.manajemenpangkat.ui.bkn.MainBKNActivity"
+            android:name="com.exomatik.manajemenpangkat.ui.bkn.fragment.MainBKNActivity"
             android:label="@string/bkn"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"/>

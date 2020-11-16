@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
-import com.exomatik.manajemenpangkat.ui.adminFakultas.MainFakultasActivity
-import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.MainBagianKepegawaianActivity
-import com.exomatik.manajemenpangkat.ui.bagianUmum.MainBagianUmumActivity
-import com.exomatik.manajemenpangkat.ui.bkn.MainBKNActivity
-import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
+import com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.MainFakultasActivity
+import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.MainBagianKepegawaianActivity
+import com.exomatik.manajemenpangkat.ui.bagianUmum.fragment.MainBagianUmumActivity
+import com.exomatik.manajemenpangkat.ui.bkn.fragment.MainBKNActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.ui.rektor.MainRektorActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 

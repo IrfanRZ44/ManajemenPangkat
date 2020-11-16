@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
-import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
+import com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.StatusPengajuanActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import kotlinx.android.synthetic.main.activity_pengajuan_selesai.*

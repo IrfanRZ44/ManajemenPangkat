@@ -10,6 +10,7 @@ import com.exomatik.manajemenpangkat.model.ModelNotifikasiPegawai
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
 import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
+import com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -234,109 +235,109 @@ class NotifikasiPegawaiActivity : AppCompatActivity() {
                         if (data != null && data.nip == dataUser.nip){
                             if (data.statusPengajuan == "AdminFakultas"){
                                 if (data.statusDitolak){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Pelaksana)", "", data.catatanDitolak, 2))
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Struktural)", "", data.catatanDitolak, 2))
                                     adapter?.notifyDataSetChanged()
                                 }
                                 else {
                                     if (data.disposisiAdminFakultas.isNotEmpty()){
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Pelaksana)", data.disposisiAdminFakultas, "", 1))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Struktural)", data.disposisiAdminFakultas, "", 1))
                                         adapter?.notifyDataSetChanged()
                                     }
                                     else{
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Pelaksana)", "", "", 3))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglPengajuan, "Pengajuan Berkas (Struktural)", "", "", 3))
                                         adapter?.notifyDataSetChanged()
                                     }
                                 }
                             }
                             else if (data.statusPengajuan == "Rektor"){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Pelaksana)", data.disposisiAdminFakultas, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Struktural)", data.disposisiAdminFakultas, "", 1))
                                 adapter?.notifyDataSetChanged()
 
                                 if (data.statusDitolak){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", "", data.catatanDitolak, 2))
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", "", data.catatanDitolak, 2))
                                     adapter?.notifyDataSetChanged()
                                 }
                                 else {
                                     if (data.disposisiRektor.isNotEmpty()){
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", data.disposisiRektor, "", 1))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", data.disposisiRektor, "", 1))
                                         adapter?.notifyDataSetChanged()
                                     }
                                     else{
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Rektor (Pelaksana)", "", "", 3))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Disposisi Rektor (Struktural)", "", "", 3))
                                         adapter?.notifyDataSetChanged()
                                     }
                                 }
                             }
                             else if (data.statusPengajuan == "BagianUmum"){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Pelaksana)", data.disposisiAdminFakultas, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Struktural)", data.disposisiAdminFakultas, "", 1))
                                 adapter?.notifyDataSetChanged()
 
-                                listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", data.disposisiRektor, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", data.disposisiRektor, "", 1))
                                 adapter?.notifyDataSetChanged()
 
                                 if (data.statusDitolak){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Pelaksana)", "", data.catatanDitolak, 2))
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Struktural)", "", data.catatanDitolak, 2))
                                     adapter?.notifyDataSetChanged()
                                 }
                                 else {
                                     if (data.disposisiBagianUmum.isNotEmpty()){
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Pelaksana)", data.disposisiBagianUmum, "", 1))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Struktural)", data.disposisiBagianUmum, "", 1))
                                         adapter?.notifyDataSetChanged()
                                     }
                                     else{
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Bagian Umum (Pelaksana)", "", "", 3))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Bagian Umum (Struktural)", "", "", 3))
                                         adapter?.notifyDataSetChanged()
                                     }
                                 }
                             }
                             else if (data.statusPengajuan == "BagianKepegawaian"){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Pelaksana)", data.disposisiAdminFakultas, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Struktural)", data.disposisiAdminFakultas, "", 1))
                                 adapter?.notifyDataSetChanged()
 
-                                listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", data.disposisiRektor, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", data.disposisiRektor, "", 1))
                                 adapter?.notifyDataSetChanged()
 
-                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Pelaksana)", data.disposisiBagianUmum, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Struktural)", data.disposisiBagianUmum, "", 1))
                                 adapter?.notifyDataSetChanged()
 
                                 if (data.statusDitolak){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Pelaksana)", "", data.catatanDitolak, 2))
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Struktural)", "", data.catatanDitolak, 2))
                                     adapter?.notifyDataSetChanged()
                                 }
                                 else {
                                     if (data.disposisiBagianKepegawaian.isNotEmpty()){
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Pelaksana)", data.disposisiBagianKepegawaian, "", 1))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Struktural)", data.disposisiBagianKepegawaian, "", 1))
                                         adapter?.notifyDataSetChanged()
                                     }
                                     else{
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Kepegawaian (Pelaksana)", "", "", 3))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Kepegawaian (Struktural)", "", "", 3))
                                         adapter?.notifyDataSetChanged()
                                     }
                                 }
                             }
                             else if (data.statusPengajuan == "BKN"){
-                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Pelaksana)", data.disposisiAdminFakultas, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Pengajuan Berkas (Struktural)", data.disposisiAdminFakultas, "", 1))
                                 adapter?.notifyDataSetChanged()
 
-                                listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Pelaksana)", data.disposisiRektor, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor (Struktural)", data.disposisiRektor, "", 1))
                                 adapter?.notifyDataSetChanged()
 
-                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Pelaksana)", data.disposisiBagianUmum, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianUmum, "Disposisi Bagian Umum (Struktural)", data.disposisiBagianUmum, "", 1))
                                 adapter?.notifyDataSetChanged()
 
-                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Pelaksana)", data.disposisiBagianKepegawaian, "", 1))
+                                listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian (Struktural)", data.disposisiBagianKepegawaian, "", 1))
                                 adapter?.notifyDataSetChanged()
                                 if (data.statusDitolak){
-                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN (Pelaksana)", "", data.catatanDitolak, 2))
+                                    listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN (Struktural)", "", data.catatanDitolak, 2))
                                     adapter?.notifyDataSetChanged()
                                 }
                                 else {
                                     if (data.disposisiBKN.isNotEmpty()){
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN (Pelaksana)", data.disposisiBKN, "", 1))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN (Struktural)", data.disposisiBKN, "", 1))
                                         adapter?.notifyDataSetChanged()
                                     }
                                     else{
-                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Persetujuan BKN (Pelaksana)", "", "", 3))
+                                        listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Persetujuan BKN (Struktural)", "", "", 3))
                                         adapter?.notifyDataSetChanged()
                                     }
                                 }

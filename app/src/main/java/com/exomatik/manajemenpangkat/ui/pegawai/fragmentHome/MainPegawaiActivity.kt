@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.pegawai
+package com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -15,8 +15,7 @@ import coil.transform.CircleCropTransformation
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.ui.auth.SplashActivity
-import com.exomatik.manajemenpangkat.ui.pegawai.fragment.EditProfilFragment
-import com.exomatik.manajemenpangkat.ui.pegawai.fragment.HomePegawaiFragment
+import com.exomatik.manajemenpangkat.ui.pegawai.NotifikasiPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main_pegawai.*
@@ -93,9 +92,11 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_beranda -> {
+                textHeader.text = "Halaman Utama"
                 supportFragmentManager.beginTransaction().replace(
                     R.id.fragment_container
                     ,
@@ -103,6 +104,7 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 ).commit()
             }
             R.id.nav_profile -> {
+                textHeader.text = "Edit Profil"
                 supportFragmentManager.beginTransaction().replace(
                     R.id.fragment_container
                     ,

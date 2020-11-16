@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.exomatik.manajemenpangkat.ui.bkn.fragment.MainBKNActivity">
+    tools:context="com.exomatik.manajemenpangkat.ui.pegawai.fragmentArsip.ArsipPegawaiActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/bkn"
+            android:text="@string/arsip"
             android:textColor="@color/black"
             android:textSize="@dimen/text_h3"
             android:textStyle="bold"
@@ -52,30 +52,4 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@+id/tabs"
         />
-    <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
-        android:id="@+id/fabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:rfal_frame_color="#ffffff"
-        app:rfal_frame_alpha="0.7"
-        android:layout_marginEnd="@dimen/h2"
-        android:layout_marginBottom="@dimen/h2"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        >
-        <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
-            android:id="@+id/fabButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:padding="8dp"
-            app:rfab_size="normal"
-            app:rfab_drawable="@drawable/ic_apps_white"
-            app:rfab_color_normal="@color/colorPrimaryDark"
-            app:rfab_color_pressed="@color/colorPrimary"
-            />
-    </com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout>
 </RelativeLayout>

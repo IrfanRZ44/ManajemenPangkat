@@ -1,4 +1,4 @@
-package com.exomatik.manajemenpangkat.ui.adminFakultas
+package com.exomatik.manajemenpangkat.ui.adminFakultas.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
+import com.exomatik.manajemenpangkat.ui.adminFakultas.RiwayatFakultasActivity
 import com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.pelaksana.UsulPelaksanaFakultasFragment
 import com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.struktural.UsulStrukturalFakultasFragment
 import com.exomatik.manajemenpangkat.ui.auth.SplashActivity
