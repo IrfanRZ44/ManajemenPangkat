@@ -73,7 +73,7 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity(),
         }
 
         btnOpenNota.setOnClickListener {
-            dataPengajuan?.disposisiBKN?.let { it1 -> openPdf(it1) }
+            dataPengajuan?.disposisiBagianUmum?.let { it1 -> openPdf(it1) }
         }
 
         btnKarpeg.setOnClickListener {

@@ -15,7 +15,7 @@ import com.exomatik.manajemenpangkat.utils.SectionsPagerAdapter
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
-import kotlinx.android.synthetic.main.activity_main_rektor.*
+import kotlinx.android.synthetic.main.activity_main_bagian_kepegawaian.*
 
 class MainBagianKepegawaianActivity : AppCompatActivity(),
     RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?> {
@@ -26,7 +26,7 @@ class MainBagianKepegawaianActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main_bagian_umum)
+        setContentView(R.layout.activity_main_bagian_kepegawaian)
 
         savedData = DataSave(this)
 

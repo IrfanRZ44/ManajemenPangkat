@@ -73,7 +73,7 @@ class DetailPelaksanaRektorActivity : AppCompatActivity(),
         }
 
         btnOpenNota.setOnClickListener {
-            dataPengajuan?.disposisiRektor?.let { it1 -> openPdf(it1) }
+            dataPengajuan?.disposisiAdminFakultas?.let { it1 -> openPdf(it1) }
         }
 
         btnKarpeg.setOnClickListener {

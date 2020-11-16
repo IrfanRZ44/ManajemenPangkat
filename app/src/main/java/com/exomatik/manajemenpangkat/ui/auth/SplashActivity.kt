@@ -6,6 +6,9 @@ import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.ui.adminFakultas.MainFakultasActivity
+import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.MainBagianKepegawaianActivity
+import com.exomatik.manajemenpangkat.ui.bagianUmum.MainBagianUmumActivity
+import com.exomatik.manajemenpangkat.ui.bkn.MainBKNActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.ui.rektor.MainRektorActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
@@ -47,14 +50,23 @@ class SplashActivity : AppCompatActivity() {
     private fun moveToMainUser(){
         val jenisUser = savedData.getDataUser()?.jenisUser
         if (!jenisUser.isNullOrEmpty()){
-            val intent = if (jenisUser == "Pegawai"){
-                Intent(this, MainPegawaiActivity::class.java)
+            val intent = if (jenisUser == "BKN"){
+                Intent(this, MainBKNActivity::class.java)
             }
             else if (jenisUser == "AdminFakultas"){
                 Intent(this, MainFakultasActivity::class.java)
             }
-            else{
+            else if (jenisUser == "Rektor"){
                 Intent(this, MainRektorActivity::class.java)
+            }
+            else if (jenisUser == "BagianUmum"){
+                Intent(this, MainBagianUmumActivity::class.java)
+            }
+            else if (jenisUser == "BagianKepegawaian"){
+                Intent(this, MainBagianKepegawaianActivity::class.java)
+            }
+            else{
+                Intent(this, MainPegawaiActivity::class.java)
             }
 
             startActivity(intent)

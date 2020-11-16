@@ -73,7 +73,7 @@ class DetailStrukturalBagianKepegawaianActivity : AppCompatActivity(),
         }
 
         btnOpenNota.setOnClickListener {
-            dataPengajuan?.disposisiBagianKepegawaian?.let { it1 -> openPdf(it1) }
+            dataPengajuan?.disposisiBagianUmum?.let { it1 -> openPdf(it1) }
         }
 
         btnKarpeg.setOnClickListener {
@@ -254,7 +254,7 @@ class DetailStrukturalBagianKepegawaianActivity : AppCompatActivity(),
         Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
         progress.visibility = View.GONE
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiBagianKepegawaian")?.setValue(urlFile)
-        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BagianKepegawaian")
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BKN")
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglBagianKepegawaian")?.setValue(tglBagianKepegawaian)
         dataPengajuan?.disposisiBagianKepegawaian = urlFile
         dataPengajuan?.tglBagianKepegawaian = tglBagianKepegawaian

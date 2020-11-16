@@ -11,9 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
-import com.exomatik.manajemenpangkat.model.ModelUsulanStruktural
-import com.exomatik.manajemenpangkat.ui.bkn.fragment.struktural.AdapterUsulStrukturalBKN
-import com.exomatik.manajemenpangkat.ui.bkn.fragment.struktural.DetailStrukturalBKNActivity
+import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,12 +21,12 @@ import kotlinx.android.synthetic.main.fragment_usul_pelaksana_fakultas.view.*
 
 class UsulPelaksanaBKNFragment : Fragment() {
     private lateinit var savedData : DataSave
-    private var listPengajuan = ArrayList<ModelUsulanStruktural>()
-    private var adapter: AdapterUsulStrukturalBKN? = null
+    private var listPengajuan = ArrayList<ModelUsulanPelaksana>()
+    private var adapter: AdapterUsulPelaksanaBKN? = null
     private lateinit var v : View
 
     override fun onCreateView(paramLayoutInflater: LayoutInflater, paramViewGroup: ViewGroup?, paramBundle: Bundle?): View? {
-        v = paramLayoutInflater.inflate(R.layout.fragment_usul_struktural_fakultas, paramViewGroup, false)
+        v = paramLayoutInflater.inflate(R.layout.fragment_usul_pelaksana_fakultas, paramViewGroup, false)
 
         myCodeHere()
         onClick()
@@ -37,10 +35,10 @@ class UsulPelaksanaBKNFragment : Fragment() {
 
     private fun myCodeHere(){
         savedData = DataSave(context)
-        adapter = AdapterUsulStrukturalBKN(
+        adapter = AdapterUsulPelaksanaBKN(
                 listPengajuan,
                 { nip: String, textNama: AppCompatTextView -> getDataPegawai(nip, textNama) },
-                { item: ModelUsulanStruktural -> onClickItem(item) })
+                { item: ModelUsulanPelaksana -> onClickItem(item) })
         v.rcProgress.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         v.rcProgress.adapter = adapter
 
@@ -49,13 +47,15 @@ class UsulPelaksanaBKNFragment : Fragment() {
 
     private fun onClick() {
         v.swipeRefresh.setOnRefreshListener {
+            listPengajuan.clear()
+            adapter?.notifyDataSetChanged()
             getDataPelaksana()
             v.swipeRefresh.isRefreshing = false
         }
     }
 
-    private fun onClickItem(item: ModelUsulanStruktural) {
-        val intent = Intent(activity, DetailStrukturalBKNActivity::class.java)
+    private fun onClickItem(item: ModelUsulanPelaksana) {
+        val intent = Intent(activity, DetailPelaksanaBKNActivity::class.java)
         intent.putExtra("dataPengajuan", item)
         activity?.startActivity(intent)
         activity?.finish()
@@ -108,9 +108,9 @@ class UsulPelaksanaBKNFragment : Fragment() {
 
                 if (result.exists()) {
                     for (snapshot in result.children) {
-                        val data = snapshot.getValue(ModelUsulanStruktural::class.java)
+                        val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
                         if (data != null){
-                            if (data.statusPengajuan == "BKN" && !data.statusDitolak){
+                            if (data.statusPengajuan == "BKN" && !data.statusDitolak && data.disposisiBKN.isEmpty()){
                                 listPengajuan.add(data)
                                 adapter?.notifyDataSetChanged()
                                 v.textStatus.visibility = View.GONE
@@ -135,7 +135,7 @@ class UsulPelaksanaBKNFragment : Fragment() {
         }
 
         FirebaseDatabase.getInstance()
-            .getReference("UsulanStruktural")
+            .getReference("UsulanPelaksana")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 }

@@ -164,7 +164,14 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                     status6.setImageResource(R.color.gray1)
                                 }
                                 else{
-                                    status6.setImageResource(R.color.green5)
+                                    if (data.disposisiBKN.isEmpty()){
+                                        status6.setImageResource(R.color.green5)
+                                    }
+                                    else{
+                                        textStatus6.text = ""
+                                        textStatus6.background = resources.getDrawable(R.drawable.ic_true_white)
+                                        status6.setImageResource(R.color.blue4)
+                                    }
                                 }
                             }
                         }
@@ -300,7 +307,14 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                     status6.setImageResource(R.color.gray1)
                                 }
                                 else{
-                                    status6.setImageResource(R.color.green5)
+                                    if (data.disposisiBKN.isEmpty()){
+                                        status6.setImageResource(R.color.green5)
+                                    }
+                                    else{
+                                        textStatus6.text = ""
+                                        textStatus6.background = resources.getDrawable(R.drawable.ic_true_white)
+                                        status6.setImageResource(R.color.blue4)
+                                    }
                                 }
                             }
                         }

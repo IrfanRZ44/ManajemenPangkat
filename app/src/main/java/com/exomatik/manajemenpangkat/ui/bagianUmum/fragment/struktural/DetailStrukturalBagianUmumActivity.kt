@@ -73,7 +73,7 @@ class DetailStrukturalBagianUmumActivity : AppCompatActivity(),
         }
 
         btnOpenNota.setOnClickListener {
-            dataPengajuan?.disposisiBagianUmum?.let { it1 -> openPdf(it1) }
+            dataPengajuan?.disposisiRektor?.let { it1 -> openPdf(it1) }
         }
 
         btnKarpeg.setOnClickListener {
@@ -254,7 +254,7 @@ class DetailStrukturalBagianUmumActivity : AppCompatActivity(),
         Toast.makeText(this, "Nota berhasil di upload", Toast.LENGTH_LONG).show()
         progress.visibility = View.GONE
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiBagianUmum")?.setValue(urlFile)
-        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BagianUmum")
+        mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BagianKepegawaian")
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglBagianUmum")?.setValue(tglBagianUmum)
         dataPengajuan?.disposisiBagianUmum = urlFile
         dataPengajuan?.tglBagianUmum = tglBagianUmum

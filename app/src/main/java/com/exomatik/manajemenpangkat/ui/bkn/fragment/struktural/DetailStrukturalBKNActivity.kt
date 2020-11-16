@@ -32,7 +32,7 @@ import com.google.firebase.storage.UploadTask
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
-import kotlinx.android.synthetic.main.activity_detail_struktural_bagian_umum.*
+import kotlinx.android.synthetic.main.activity_detail_struktural_bkn.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -50,7 +50,7 @@ class DetailStrukturalBKNActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_detail_struktural_bagian_umum)
+        setContentView(R.layout.activity_detail_struktural_bkn)
         myCodeHere()
     }
 
@@ -73,7 +73,7 @@ class DetailStrukturalBKNActivity : AppCompatActivity(),
         }
 
         btnOpenNota.setOnClickListener {
-            dataPengajuan?.disposisiBKN?.let { it1 -> openPdf(it1) }
+            dataPengajuan?.disposisiBagianKepegawaian?.let { it1 -> openPdf(it1) }
         }
 
         btnKarpeg.setOnClickListener {

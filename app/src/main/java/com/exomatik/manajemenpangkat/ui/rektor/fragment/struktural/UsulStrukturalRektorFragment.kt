@@ -1,6 +1,7 @@
 package com.exomatik.manajemenpangkat.ui.rektor.fragment.struktural
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -48,16 +49,18 @@ class UsulStrukturalRektorFragment : Fragment() {
 
     private fun onClick() {
         v.swipeRefresh.setOnRefreshListener {
+            listPengajuan.clear()
+            adapter?.notifyDataSetChanged()
             getDataPelaksana()
             v.swipeRefresh.isRefreshing = false
         }
     }
 
     private fun onClickItem(item: ModelUsulanStruktural) {
-//        val intent = Intent(activity, DetailStrukturalFakultasActivity::class.java)
-//        intent.putExtra("dataPengajuan", item)
-//        activity?.startActivity(intent)
-//        activity?.finish()
+        val intent = Intent(activity, DetailStrukturalRektorActivity::class.java)
+        intent.putExtra("dataPengajuan", item)
+        activity?.startActivity(intent)
+        activity?.finish()
     }
 
     private fun getDataPegawai(nip: String, textNama: AppCompatTextView) {

@@ -48,6 +48,8 @@ class UsulStrukturalBagianKepegawaianFragment : Fragment() {
 
     private fun onClick() {
         v.swipeRefresh.setOnRefreshListener {
+            listPengajuan.clear()
+            adapter?.notifyDataSetChanged()
             getDataPelaksana()
             v.swipeRefresh.isRefreshing = false
         }

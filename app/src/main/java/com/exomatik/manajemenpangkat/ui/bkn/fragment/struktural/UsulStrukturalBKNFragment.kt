@@ -48,6 +48,8 @@ class UsulStrukturalBKNFragment : Fragment() {
 
     private fun onClick() {
         v.swipeRefresh.setOnRefreshListener {
+            listPengajuan.clear()
+            adapter?.notifyDataSetChanged()
             getDataPelaksana()
             v.swipeRefresh.isRefreshing = false
         }
@@ -109,7 +111,7 @@ class UsulStrukturalBKNFragment : Fragment() {
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUsulanStruktural::class.java)
                         if (data != null){
-                            if (data.statusPengajuan == "BKN" && !data.statusDitolak){
+                            if (data.statusPengajuan == "BKN" && !data.statusDitolak && data.disposisiBKN.isEmpty()){
                                 listPengajuan.add(data)
                                 adapter?.notifyDataSetChanged()
                                 v.textStatus.visibility = View.GONE
