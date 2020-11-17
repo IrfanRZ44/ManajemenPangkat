@@ -34,8 +34,6 @@ class NotifikasiPegawaiActivity : AppCompatActivity() {
         savedData = DataSave(this)
         adapter = AdapterNotifikasiPegawai(listProgress, this)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
-        layoutManager.stackFromEnd = true
-        layoutManager.reverseLayout = true
         rcProgress.layoutManager = layoutManager
         rcProgress.adapter = adapter
 
@@ -184,6 +182,14 @@ class NotifikasiPegawaiActivity : AppCompatActivity() {
                                     if (data.disposisiBKN.isNotEmpty()){
                                         listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN (Pelaksana)", data.disposisiBKN, "", 1))
                                         adapter?.notifyDataSetChanged()
+                                        if (data.disposisiSKBaru.isNotEmpty()){
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "SK Baru (Pelaksana)", data.disposisiSKBaru, "", 1))
+                                            adapter?.notifyDataSetChanged()
+                                        }
+                                        else{
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "SK Baru (Pelaksana)", "", "", 3))
+                                            adapter?.notifyDataSetChanged()
+                                        }
                                     }
                                     else{
                                         listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Persetujuan BKN (Pelaksana)", "", "", 3))
@@ -335,6 +341,14 @@ class NotifikasiPegawaiActivity : AppCompatActivity() {
                                     if (data.disposisiBKN.isNotEmpty()){
                                         listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN (Struktural)", data.disposisiBKN, "", 1))
                                         adapter?.notifyDataSetChanged()
+                                        if (data.disposisiSKBaru.isNotEmpty()){
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "SK Baru (Pelaksana)", data.disposisiSKBaru, "", 1))
+                                            adapter?.notifyDataSetChanged()
+                                        }
+                                        else{
+                                            listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "SK Baru (Pelaksana)", "", "", 3))
+                                            adapter?.notifyDataSetChanged()
+                                        }
                                     }
                                     else{
                                         listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Persetujuan BKN (Struktural)", "", "", 3))

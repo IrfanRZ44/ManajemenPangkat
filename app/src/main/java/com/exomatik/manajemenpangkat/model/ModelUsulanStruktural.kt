@@ -31,5 +31,6 @@ data class ModelUsulanStruktural(
     var disposisiBagianUmum: String = "",
     var disposisiBagianKepegawaian: String = "",
     var disposisiBKN: String = "",
+    var disposisiSKBaru: String = "",
     var nip: String = ""
     ) : Parcelable

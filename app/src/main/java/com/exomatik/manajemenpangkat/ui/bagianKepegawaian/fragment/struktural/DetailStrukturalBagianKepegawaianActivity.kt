@@ -177,7 +177,7 @@ class DetailStrukturalBagianKepegawaianActivity : AppCompatActivity() {
         }
 
         btnSend.setOnClickListener {
-            if (btnSend.text == "Kirim Nota"){
+            if (btnSend.text == "Surat Usulan"){
                 getPDF()
             }
             else{

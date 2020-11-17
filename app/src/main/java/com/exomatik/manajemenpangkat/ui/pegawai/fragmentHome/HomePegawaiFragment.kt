@@ -107,26 +107,29 @@ class HomePegawaiFragment : Fragment() {
                 v.progress.visibility = View.GONE
 
                 if (result.exists()) {
+                    var action = false
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUsulanPelaksana::class.java)
 
                         if (data != null && data.statusPengajuan.isNotEmpty() && data.pangkatAwal.isNotEmpty()
                             && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
 
-                            if (data.statusDitolak) {
+                            action = if (data.statusDitolak) {
                                 val intent = Intent(activity, UsulanPelaksanaActivity::class.java)
                                 intent.putExtra("awal", data.pangkatAwal)
                                 intent.putExtra("usul", data.pangkatUsulan)
                                 activity?.startActivity(intent)
                                 activity?.finish()
-                            }
-                            else{
+                                true
+                            } else{
                                 Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
+                                true
                             }
                         }
-                        else{
-                            checkUsulanStruktural(dataUser)
-                        }
+                    }
+
+                    if(!action){
+                        checkUsulanStruktural(dataUser)
                     }
                 }
                 else{
@@ -158,28 +161,31 @@ class HomePegawaiFragment : Fragment() {
                 v.progress.visibility = View.GONE
 
                 if (result.exists()) {
+                    var action = false
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUsulanStruktural::class.java)
 
                         if (data != null && data.statusPengajuan.isNotEmpty() && data.pangkatAwal.isNotEmpty()
                             && data.pangkatUsulan.isNotEmpty() && data.tglPengajuan == tglPengajuan){
 
-                            if (data.statusDitolak){
+                            action = if (data.statusDitolak){
                                 val intent = Intent(activity, UsulanStrukturalActivity::class.java)
                                 intent.putExtra("awal", data.pangkatAwal)
                                 intent.putExtra("usul", data.pangkatUsulan)
                                 activity?.startActivity(intent)
                                 activity?.finish()
-                            }
-                            else{
+                                true
+                            } else{
                                 Toast.makeText(activity, "Maaf, Anda sudah mengajukan berkas.. Harap cek status pengajuan Anda", Toast.LENGTH_LONG).show()
+                                true
                             }
                         }
-                        else{
-                            val intent = Intent(activity, UsulKPActivity::class.java)
-                            activity?.startActivity(intent)
-                            activity?.finish()
-                        }
+                    }
+
+                    if(!action){
+                        val intent = Intent(activity, UsulKPActivity::class.java)
+                        activity?.startActivity(intent)
+                        activity?.finish()
                     }
                 }
                 else{

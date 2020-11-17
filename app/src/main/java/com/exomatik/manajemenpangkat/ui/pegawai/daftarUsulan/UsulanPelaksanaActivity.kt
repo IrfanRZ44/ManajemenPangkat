@@ -16,6 +16,11 @@ import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
+import com.exomatik.manajemenpangkat.services.notification.APIService
+import com.exomatik.manajemenpangkat.services.notification.Common
+import com.exomatik.manajemenpangkat.services.notification.model.MyResponse
+import com.exomatik.manajemenpangkat.services.notification.model.Notification
+import com.exomatik.manajemenpangkat.services.notification.model.Sender
 import com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome.MainPegawaiActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.android.gms.tasks.OnFailureListener
@@ -25,6 +30,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_usulan_pelaksana.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -268,6 +276,7 @@ class UsulanPelaksanaActivity : AppCompatActivity() {
             changeButtonStyle()
             progress.visibility = View.GONE
             mDatabaseReference?.child("${nip}__$tglPengajuan")?.child(requestFile)?.setValue(it.toString())
+            sendNotification()
         }
 
         val onFailureListener = OnFailureListener {
@@ -346,5 +355,41 @@ class UsulanPelaksanaActivity : AppCompatActivity() {
                 btnTranskrip.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
             }
         }
+    }
+
+    private fun sendNotification() {
+        val valueEventListener = object : ValueEventListener {
+            override fun onCancelled(result: DatabaseError) {
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onDataChange(result: DataSnapshot) {
+                if (result.exists()) {
+                    for (snapshot in result.children) {
+                        val data = snapshot.getValue(ModelUser::class.java)
+                        if (data != null && data.token.isNotEmpty()){
+                            val notification = Notification("${savedData.getDataUser()?.nama} mengirimkan pengajuan usulan",
+                                "Pengajuan Usulan Pelaksana"
+                                , "com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_ADMIN_FAKULTAS")
+
+                            val sender = Sender(notification, data.token)
+                            val mService: APIService = Common.fCMClient
+                            mService.sendNotification(sender)?.enqueue(object : Callback<MyResponse?> {
+                                override fun onResponse(
+                                    call: Call<MyResponse?>?,
+                                    response: Response<MyResponse?>?) {}
+                                override fun onFailure(call: Call<MyResponse?>?, t: Throwable) {}
+                            })
+                        }
+                    }
+                }
+            }
+        }
+
+        FirebaseDatabase.getInstance()
+            .getReference("Users")
+            .orderByChild("jenisUser")
+            .equalTo("AdminFakultas")
+            .addListenerForSingleValueEvent(valueEventListener)
     }
 }

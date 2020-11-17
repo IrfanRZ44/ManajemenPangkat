@@ -9,6 +9,7 @@ import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.ui.auth.SplashActivity
 import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.RiwayatBagianKepegawaianActivity
+import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.daftarSK.DaftarSKKepegawaianActivity
 import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.pelaksana.UsulPelaksanaBagianKepegawaianFragment
 import com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.struktural.UsulStrukturalBagianKepegawaianFragment
 import com.exomatik.manajemenpangkat.utils.DataSave
@@ -17,6 +18,7 @@ import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import kotlinx.android.synthetic.main.activity_main_bagian_kepegawaian.*
+import kotlinx.android.synthetic.main.activity_main_bagian_kepegawaian.view.*
 
 class MainBagianKepegawaianActivity : AppCompatActivity(),
     RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<Any?> {
@@ -33,6 +35,15 @@ class MainBagianKepegawaianActivity : AppCompatActivity(),
 
         myCodeHere()
         setFAB()
+        onClick()
+    }
+
+    private fun onClick() {
+        toolbar.btnDaftar.setOnClickListener {
+            val intent = Intent(this, DaftarSKKepegawaianActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun myCodeHere(){

@@ -213,7 +213,7 @@
     <string name="_2">2</string>
     <string name="_6">6</string>
     <string name="pengajuan_berkas">Pengajuan Berkas</string>
-    <string name="verifikasi_admin_fakultas">Verifikasi Admin Fakultas</string>
+    <string name="verifikasi_admin_fakultas">Verifikasi Admin Univ/Fakultas</string>
     <string name="disposisi_rektor">Disposisi Rektor</string>
     <string name="disposisi_admin_bagian_umum">Disposisi Admin Bagian Umum</string>
     <string name="disposisi_admin_bagian_kepegawaian">Disposisi Admin Bagian Kepegawaian</string>
@@ -221,7 +221,7 @@
     <string name="kirim_nota">Kirim Nota</string>
     <string name="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat</string>
     <string name="sedang_diproses">Sedang diproses</string>
-    <string name="admin_fakultas">Admin Fakultas</string>
+    <string name="admin_fakultas">Admin Univ/Fakultas</string>
     <string name="awal">Awal</string>
     <string name="usulan">Usulan</string>
     <string name="usulan_administrasi_pelaksana">Usulan Administrasi Pelaksana</string>
@@ -243,4 +243,9 @@
     <string name="bkn">BKN</string>
     <string name="bagian_kepegawaian">Bagian Kepegawaian</string>
     <string name="simpan_data">Simpan Data</string>
+    <string name="surat_usulan">Surat Usulan</string>
+    <string name="daftar_sk">DAFTAR SK</string>
+     <string name="upload_sk">Upload SK</string>
+    <string name="_7">7</string>
+    <string name="sk_baru">SK Baru</string>
 </resources>

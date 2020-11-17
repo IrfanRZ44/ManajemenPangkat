@@ -61,18 +61,18 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
 
                     if (data != null && data.nip == savedData.getDataUser()?.nip){
                         if (data.statusPengajuan == "AdminFakultas" && !data.statusDitolak && data.disposisiAdminFakultas.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "Rektor" && !data.statusDitolak && data.disposisiRektor.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "BagianUmum" && !data.statusDitolak && data.disposisiBagianUmum.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
@@ -82,7 +82,7 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "BagianKepegawaian" && !data.statusDitolak && data.disposisiBagianKepegawaian.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
@@ -95,7 +95,7 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "BKN" && !data.statusDitolak && data.disposisiBKN.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
@@ -107,8 +107,13 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
                             listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian", data.disposisiBagianKepegawaian, "", 1))
                             adapter?.notifyDataSetChanged()
 
-                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN", data.disposisiBKN, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN", data.disposisiBKN, "", 1))
                             adapter?.notifyDataSetChanged()
+
+                            if (data.disposisiSKBaru.isNotEmpty()){
+                                listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "SK Baru", data.disposisiSKBaru, "", 1))
+                                adapter?.notifyDataSetChanged()
+                            }
                         }
                     }
                 }
@@ -141,18 +146,18 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
 
                     if (data != null && data.nip == savedData.getDataUser()?.nip){
                         if (data.statusPengajuan == "AdminFakultas" && !data.statusDitolak && data.disposisiAdminFakultas.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "Rektor" && !data.statusDitolak && data.disposisiRektor.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "BagianUmum" && !data.statusDitolak && data.disposisiBagianUmum.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
@@ -162,7 +167,7 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "BagianKepegawaian" && !data.statusDitolak && data.disposisiBagianKepegawaian.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
@@ -175,7 +180,7 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
                             adapter?.notifyDataSetChanged()
                         }
                         else if (data.statusPengajuan == "BKN" && !data.statusDitolak && data.disposisiBKN.isNotEmpty()){
-                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Fakultas", data.disposisiAdminFakultas, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglAdminFakultas, "Nota Admin Univ/Fakultas", data.disposisiAdminFakultas, "", 1))
                             adapter?.notifyDataSetChanged()
 
                             listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Disposisi Rektor", data.disposisiRektor, "", 1))
@@ -187,8 +192,13 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
                             listProgress.add(ModelNotifikasiPegawai(data.tglBagianKepegawaian, "Disposisi Kepegawaian", data.disposisiBagianKepegawaian, "", 1))
                             adapter?.notifyDataSetChanged()
 
-                            listProgress.add(ModelNotifikasiPegawai(data.tglRektor, "Persetujuan BKN", data.disposisiBKN, "", 1))
+                            listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "Persetujuan BKN", data.disposisiBKN, "", 1))
                             adapter?.notifyDataSetChanged()
+
+                            if (data.disposisiSKBaru.isNotEmpty()){
+                                listProgress.add(ModelNotifikasiPegawai(data.tglBKN, "SK Baru", data.disposisiSKBaru, "", 1))
+                                adapter?.notifyDataSetChanged()
+                            }
                         }
                     }
                 }

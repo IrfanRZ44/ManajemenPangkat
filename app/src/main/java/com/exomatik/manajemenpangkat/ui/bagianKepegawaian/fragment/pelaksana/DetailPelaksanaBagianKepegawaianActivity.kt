@@ -177,7 +177,7 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity() {
         }
 
         btnSend.setOnClickListener {
-            if (btnSend.text == "Kirim Nota"){
+            if (btnSend.text == "Surat Usulan"){
                 getPDF()
             }
             else{
@@ -539,8 +539,8 @@ class DetailPelaksanaBagianKepegawaianActivity : AppCompatActivity() {
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("disposisiBagianKepegawaian")?.setValue(urlFile)
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("statusPengajuan")?.setValue("BKN")
         mDatabaseReference?.child("${nip}__$tglPengajuan")?.child("tglBagianKepegawaian")?.setValue(tglBKN)
-        dataPengajuan?.disposisiBKN = urlFile
-        dataPengajuan?.tglBKN = tglBKN
+        dataPengajuan?.disposisiBagianKepegawaian = urlFile
+        dataPengajuan?.tglBagianKepegawaian = tglBKN
         FirebaseDatabase.getInstance().getReference("DataBagianKepegawaian")
             .child("UsulanPelaksana")
             .child("${dataPengajuan?.nip}__${tglBKN}")

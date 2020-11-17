@@ -177,6 +177,15 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                         textStatus6.text = ""
                                         textStatus6.background = resources.getDrawable(R.drawable.ic_true_white)
                                         status6.setImageResource(R.color.blue4)
+
+                                        if (data.disposisiSKBaru.isEmpty()){
+                                            status7.setImageResource(R.color.green5)
+                                        }
+                                        else{
+                                            textStatus7.text = ""
+                                            textStatus7.background = resources.getDrawable(R.drawable.ic_true_white)
+                                            status7.setImageResource(R.color.blue4)
+                                        }
                                     }
                                 }
                             }
@@ -325,6 +334,15 @@ class StatusPengajuanActivity : AppCompatActivity() {
                                         textStatus6.text = ""
                                         textStatus6.background = resources.getDrawable(R.drawable.ic_true_white)
                                         status6.setImageResource(R.color.blue4)
+
+                                        if (data.disposisiSKBaru.isEmpty()){
+                                            status7.setImageResource(R.color.green5)
+                                        }
+                                        else{
+                                            textStatus7.text = ""
+                                            textStatus7.background = resources.getDrawable(R.drawable.ic_true_white)
+                                            status7.setImageResource(R.color.blue4)
+                                        }
                                     }
                                 }
                             }
