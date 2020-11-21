@@ -35,7 +35,7 @@ class ArsipNotaFragment(private val openPdf: (String) -> Unit) : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = AdapterNotaPegawai(listProgress) { urlFile: String -> openPdf(urlFile) }
+        adapter = AdapterNotaPegawai(listProgress, { urlFile: String -> openPdf(urlFile) }, activity)
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
         layoutManager.stackFromEnd = true
         layoutManager.reverseLayout = true

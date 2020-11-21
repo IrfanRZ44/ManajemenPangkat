@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/CustomTheme">
@@ -64,22 +63,20 @@
                 android:id="@+id/textTanggal"
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDownload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/h2"
-                android:layout_marginEnd="@dimen/h2"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/selesai"
-                android:textColor="@color/green1"
-                android:textSize="@dimen/text_h2"
+                android:padding="@dimen/h2"
+                android:text="@string/download"
+                android:textColor="@color/gray3"
+                android:textAllCaps="false"
+                android:drawableStart="@drawable/ic_download_gray"
+                android:drawablePadding="@dimen/h2"
+                android:backgroundTint="@color/white"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/h2"
-                android:id="@+id/textProgress"
-                tools:ignore="RelativeOverlap"
-                android:drawableEnd="@drawable/ic_true_green"
                 />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
