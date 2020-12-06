@@ -26,6 +26,7 @@ class BiodataActivity : AppCompatActivity() {
         onClick()
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun onClick() {
         btnBack.setOnClickListener {
             val intent = Intent(this, MainPegawaiActivity::class.java)

@@ -1,7 +1,11 @@
 package com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome
 
 import android.annotation.SuppressLint
+import android.app.*
 import android.content.Intent
+import android.graphics.Color
+import android.media.RingtoneManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
@@ -16,11 +20,14 @@ import com.exomatik.manajemenpangkat.R
 import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.ui.auth.SplashActivity
 import com.exomatik.manajemenpangkat.ui.pegawai.NotifikasiPegawaiActivity
+import com.exomatik.manajemenpangkat.utils.BackgroundService
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main_pegawai.*
 import kotlinx.android.synthetic.main.activity_main_pegawai.view.*
 import kotlinx.android.synthetic.main.nav_header_pegawai.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var savedData : DataSave
@@ -36,6 +43,8 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         setNavigation()
         setHeader()
         onClick()
+
+        setAlarm()
     }
 
     private fun setNavigation(){
@@ -81,6 +90,7 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onBackPressed() {
         if (exit) {
             super.onBackPressed()
@@ -122,5 +132,93 @@ class MainPegawaiActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         drawer_layout.closeDrawer(GravityCompat.START)
 
         return true
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun setAlarm() {
+        val myDate = "${savedData.getDataUser()?.tmtPangkat} 07:00:00"
+        val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val date = sdf.parse(myDate)
+
+        if (date != null){
+            alarm1(date)
+            alarm2(date)
+            alarm3(date)
+        }
+    }
+
+    //memunculkan notifikasi 4 tahun setelah TMT
+    @SuppressLint("SimpleDateFormat")
+    private fun alarm1(date: Date){
+        val cal = Calendar.getInstance()
+        cal.time = date
+        cal.add(Calendar.YEAR, 4)
+        val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val dueDate = sdf.format(cal.time)
+        val dateTimeStamp = sdf.parse(dueDate)
+
+        if (dateTimeStamp != null){
+            createAlarmManager(dateTimeStamp.time)
+        }
+    }
+
+    //memunculkan notifikasi 4 tahun, 3 bulan setelah TMT
+    @SuppressLint("SimpleDateFormat")
+    private fun alarm2(date: Date){
+        val cal = Calendar.getInstance()
+        cal.time = date
+        cal.add(Calendar.YEAR, 4)
+        cal.add(Calendar.MONTH, 3)
+        val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val dueDate = sdf.format(cal.time)
+        val dateTimeStamp = sdf.parse(dueDate)
+
+        if (dateTimeStamp != null){
+            createAlarmManager(dateTimeStamp.time)
+        }
+    }
+
+    //memunculkan notifikasi 4 tahun, 6 bulan setelah TMT
+    @SuppressLint("SimpleDateFormat")
+    private fun alarm3(date: Date){
+        val cal = Calendar.getInstance()
+        cal.time = date
+        cal.add(Calendar.YEAR, 4)
+        cal.add(Calendar.MONTH, 6)
+        val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val dueDate = sdf.format(cal.time)
+        val dateTimeStamp = sdf.parse(dueDate)
+
+        if (dateTimeStamp != null){
+            createAlarmManager(dateTimeStamp.time)
+        }
+    }
+
+    private fun createAlarmManager(randomTime: Long){
+        createChannel()
+
+        val backgroundService = Intent(this, BackgroundService::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, backgroundService, 0)
+        val taskManager = getSystemService(ALARM_SERVICE) as AlarmManager?
+
+        taskManager?.set(AlarmManager.RTC_WAKEUP, randomTime, pendingIntent)
+    }
+
+    private fun createChannel(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val description = "Channel for Manajemen Pangkat"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("notify Manajemen Pangkat", description, importance)
+            channel.description = description
+
+            channel.lightColor = Color.GREEN
+            channel.enableLights(true)
+            val uriSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            channel.setSound(uriSound, Notification.AUDIO_ATTRIBUTES_DEFAULT)
+            channel.enableVibration(true)
+
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager?.createNotificationChannel(channel)
+        }
     }
 }

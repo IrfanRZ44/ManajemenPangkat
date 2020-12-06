@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +20,9 @@
         android:fullBackupContent="true"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+
+        <receiver android:name=".utils.BackgroundService"/>
+
         <activity android:name="com.exomatik.manajemenpangkat.ui.auth.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomTheme"
@@ -39,7 +44,11 @@
             android:name="com.exomatik.manajemenpangkat.ui.pegawai.fragmentHome.MainPegawaiActivity"
             android:label="@string/halaman_utama"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"/>
+            android:theme="@style/CustomTheme">
+            <intent-filter>
+                <action android:name="com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_PEGAWAI"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.exomatik.manajemenpangkat.ui.pegawai.fragmentArsip.ArsipPegawaiActivity"
@@ -115,25 +124,41 @@
             android:name="com.exomatik.manajemenpangkat.ui.rektor.MainRektorActivity"
             android:label="@string/rektor"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"/>
+            android:theme="@style/CustomTheme">
+            <intent-filter>
+                <action android:name="com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_REKTOR"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.exomatik.manajemenpangkat.ui.bagianUmum.fragment.MainBagianUmumActivity"
             android:label="@string/bagian_umum"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"/>
+            android:theme="@style/CustomTheme">
+            <intent-filter>
+                <action android:name="com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_BAGIAN_UMUM"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.exomatik.manajemenpangkat.ui.bagianKepegawaian.fragment.MainBagianKepegawaianActivity"
             android:label="@string/bagian_kepegawaian"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"/>
+            android:theme="@style/CustomTheme">
+            <intent-filter>
+                <action android:name="com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_BAGIAN_KEPEGAWAIAN"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.exomatik.manajemenpangkat.ui.bkn.fragment.MainBKNActivity"
             android:label="@string/bkn"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"/>
+            android:theme="@style/CustomTheme">
+            <intent-filter>
+                <action android:name="com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_BKN"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.exomatik.manajemenpangkat.ui.rektor.fragment.pelaksana.DetailPelaksanaRektorActivity"

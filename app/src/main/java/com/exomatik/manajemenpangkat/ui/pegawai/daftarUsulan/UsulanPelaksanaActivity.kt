@@ -99,6 +99,7 @@ class UsulanPelaksanaActivity : AppCompatActivity() {
                     val tempSavedData = savedData.getDataUser()
                     tempSavedData?.tglPengajuan = tglPengajuan
                     savedData.setDataObject(tempSavedData, "Users")
+                    sendNotification()
 
                     val intent = Intent(this, PengajuanSelesaiActivity::class.java)
                     startActivity(intent)
@@ -276,7 +277,6 @@ class UsulanPelaksanaActivity : AppCompatActivity() {
             changeButtonStyle()
             progress.visibility = View.GONE
             mDatabaseReference?.child("${nip}__$tglPengajuan")?.child(requestFile)?.setValue(it.toString())
-            sendNotification()
         }
 
         val onFailureListener = OnFailureListener {
@@ -368,7 +368,7 @@ class UsulanPelaksanaActivity : AppCompatActivity() {
                     for (snapshot in result.children) {
                         val data = snapshot.getValue(ModelUser::class.java)
                         if (data != null && data.token.isNotEmpty()){
-                            val notification = Notification("${savedData.getDataUser()?.nama} mengirimkan pengajuan usulan",
+                            val notification = Notification("${savedData.getDataUser()?.nama} mengirimkan berkas",
                                 "Pengajuan Usulan Pelaksana"
                                 , "com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_ADMIN_FAKULTAS")
 

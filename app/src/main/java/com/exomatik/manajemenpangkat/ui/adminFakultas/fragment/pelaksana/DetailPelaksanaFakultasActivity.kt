@@ -18,18 +18,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.exomatik.manajemenpangkat.R
+import com.exomatik.manajemenpangkat.model.ModelUser
 import com.exomatik.manajemenpangkat.model.ModelUsulanPelaksana
+import com.exomatik.manajemenpangkat.services.notification.APIService
+import com.exomatik.manajemenpangkat.services.notification.Common
+import com.exomatik.manajemenpangkat.services.notification.model.MyResponse
+import com.exomatik.manajemenpangkat.services.notification.model.Notification
+import com.exomatik.manajemenpangkat.services.notification.model.Sender
 import com.exomatik.manajemenpangkat.ui.adminFakultas.fragment.MainFakultasActivity
 import com.exomatik.manajemenpangkat.utils.DataSave
 import com.exomatik.manajemenpangkat.utils.DetailPDFActivity
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_detail_pelaksana_fakultas.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -548,5 +556,79 @@ class DetailPelaksanaFakultasActivity : AppCompatActivity() {
         val intent = Intent(this, MainFakultasActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun sendNotificationRektor() {
+        val valueEventListener = object : ValueEventListener {
+            override fun onCancelled(result: DatabaseError) {
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onDataChange(result: DataSnapshot) {
+                if (result.exists()) {
+                    for (snapshot in result.children) {
+                        val data = snapshot.getValue(ModelUser::class.java)
+                        if (data != null && data.token.isNotEmpty()){
+                            val notification = Notification("Admin Fakultas/Univ mengirimkan nota usulan",
+                                "Pengajuan Usulan Pelaksana"
+                                , "com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_REKTOR")
+
+                            val sender = Sender(notification, data.token)
+                            val mService: APIService = Common.fCMClient
+                            mService.sendNotification(sender)?.enqueue(object :
+                                Callback<MyResponse?> {
+                                override fun onResponse(
+                                    call: Call<MyResponse?>?,
+                                    response: Response<MyResponse?>?) {}
+                                override fun onFailure(call: Call<MyResponse?>?, t: Throwable) {}
+                            })
+                        }
+                    }
+                }
+            }
+        }
+
+        FirebaseDatabase.getInstance()
+            .getReference("Users")
+            .orderByChild("jenisUser")
+            .equalTo("Rektor")
+            .addListenerForSingleValueEvent(valueEventListener)
+    }
+
+    private fun sendNotificationPegawai() {
+        val valueEventListener = object : ValueEventListener {
+            override fun onCancelled(result: DatabaseError) {
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onDataChange(result: DataSnapshot) {
+                if (result.exists()) {
+                    for (snapshot in result.children) {
+                        val data = snapshot.getValue(ModelUser::class.java)
+                        if (data != null && data.token.isNotEmpty()){
+                            val notification = Notification("Admin Fakultas/Univ menolak berkas",
+                                "Pengajuan Usulan Pelaksana"
+                                , "com.exomatik.manajemenpangkat.fcm_TARGET_MAIN_PEGAWAI")
+
+                            val sender = Sender(notification, data.token)
+                            val mService: APIService = Common.fCMClient
+                            mService.sendNotification(sender)?.enqueue(object :
+                                Callback<MyResponse?> {
+                                override fun onResponse(
+                                    call: Call<MyResponse?>?,
+                                    response: Response<MyResponse?>?) {}
+                                override fun onFailure(call: Call<MyResponse?>?, t: Throwable) {}
+                            })
+                        }
+                    }
+                }
+            }
+        }
+
+        FirebaseDatabase.getInstance()
+            .getReference("Users")
+            .orderByChild("jenisUser")
+            .equalTo("Rektor")
+            .addListenerForSingleValueEvent(valueEventListener)
     }
 }
